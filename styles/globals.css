@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+#logo-mask {
+  --size: 80px;
+
+  background: black;
+
+  -webkit-mask-image: radial-gradient(
+    circle var(--size) at center,
+    white 0%,
+    white 10%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle var(--size) at center,
+    white 0%,
+    white 10%,
+    transparent 100%
+  );
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
