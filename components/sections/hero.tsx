@@ -24,37 +24,68 @@ export function Hero() {
     });
 
     tl.to("#logo-img", {
+      opacity: 1,
+      duration: 0.5,
+    });
+
+    tl.to("#star-light-img", {
+      opacity: 1,
+      scale: .6,
+      duration: 0.4,
+    });
+
+    tl.to("#star-light-img", {
+      opacity: 0,
+      ease: "circ",
+      scale: 2,
+      duration: 1,
+    });
+
+    tl.to("#logo-img", {
+      opacity: 1,
+      duration: 0.3,
+      scale: 0.8,
+    }, "<0.7");
+
+    tl.to("#logo-img", {
       delay: 0.1,
       duration: 2,
       scale: 30,
       opacity: 0,
-    });
+    }, "<0.3");
 
-    tl.to(
+    tl.fromTo(
       "#logo-mask",
       {
-        duration: 2,
-        webkitMaskImage:
-          "radial-gradient(circle 2000px at center, white 0%, white 10%, transparent 100%)",
-        maskImage:
-          "radial-gradient(circle 2000px at center, white 0%, white 10%, transparent 100%)",
+        "--size": "0px",
       },
-      "<",
+      {
+        "--size": "15000px", // ajustá según pantalla
+        duration: 2,
+        ease: "power3.out",
+      },
+      "<"
     );
   }, []);
 
   return (
     <div className="overflow-hidden">
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
+        <div className="w-full h-screen" id="logo-mask"></div>
         <img
           src="/naztro.svg"
           alt="Logo"
           id="logo-img"
-          className="absolute w-62 h-62 m-auto inset-0 object-contain origin-center"
+          className="absolute opacity-0 w-62 h-62 m-auto inset-0 object-contain origin-center"
+        />
+        <img
+          src="/star-light.webp"
+          alt="Logo"
+          id="star-light-img"
+          className="absolute opacity-0 w-40 h-40 rotate-105 m-auto right-0 left-26 top-86 object-contain origin-center"
         />
       </div>
       <section
-        id="logo-mask"
         ref={containerRef}
         className="relative min-h-screen flex flex-col justify-center px-4 md:px-8 py-32 overflow-hidden"
       >
@@ -87,22 +118,6 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Decorative background number */}
-        <div
-          className="absolute top-1/2 right-0 -translate-y-1/2 text-[20rem] md:text-[30rem] lg:text-[40rem] font-bold text-[#27272A] leading-none z-10 select-none pointer-events-none"
-          aria-hidden="true"
-        >
-          <div className="relative w-screen ps-250 h-[1120px]">
-            <Plasma
-              color="#4b96e3"
-              speed={0.6}
-              direction="forward"
-              scale={0.4}
-              opacity={0.8}
-              mouseInteractive={true}
-            />
-          </div>
-        </div>
       </section>
     </div>
   );

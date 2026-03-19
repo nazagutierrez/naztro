@@ -10,7 +10,7 @@ import { CTA } from "@/components/sections/cta"
 import { Footer } from "@/components/sections/footer"
 import { NoiseTexture } from "@/components/noise-texture"
 
-export default function Home() {
+export default function App() {
   return (
     <>
       <NoiseTexture />

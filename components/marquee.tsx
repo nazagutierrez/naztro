@@ -61,7 +61,7 @@ export function Marquee({
       >
         {children}
       </div>
-      <style jsx>{`
+      <style>{`
         @keyframes marquee {
           from {
             transform: translateX(0);
