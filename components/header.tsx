@@ -6,7 +6,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b-2 border-[#3F3F46] bg-[#09090B]/90 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#2a2a80] bg-[#09090B]/60 backdrop-blur-sm">
       <div className="flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
         {/* Logo */}
         <a

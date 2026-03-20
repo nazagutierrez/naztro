@@ -10,3 +10,15 @@
     rgba(0, 0, 0, 1) 100%
   );
 }
+
+.hero-font {
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(90deg,#fff,#145cf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 100% auto;
+    font-family: "IBM Plex Serif", serif;
+    font-style: italic;
+    font-weight: 400;
+}
+

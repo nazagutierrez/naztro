@@ -75,36 +75,47 @@ export function Hero() {
         duration: 1,
         ease: "power1.inOut",
       },
-    ), "-=0.3";
+      "-=1"
+    );
+    
+    tl.to(
+      ".hero-font",
+      {
+        backgroundSize: "40% auto",
+        duration: 1,
+        filter: "saturate(2)",
+        ease: "power1.inOut",
+      },
+    ), "<";
   }, []);
 
   return (
     <div className="overflow-hidden">
-        <Grainient
-          className="absolute!"
-          color1="#050505"
-          color2="#5227FF"
-          color3="#6ea3f7"
-          timeSpeed={0.45}
-          colorBalance={0}
-          warpStrength={1}
-          warpFrequency={4.1}
-          warpSpeed={1.5}
-          warpAmplitude={5}
-          blendAngle={0}
-          blendSoftness={0.05}
-          rotationAmount={500}
-          noiseScale={2}
-          grainAmount={0.1}
-          grainScale={2}
-          grainAnimated={false}
-          contrast={1.5}
-          gamma={1}
-          saturation={1}
-          centerX={0}
-          centerY={0.5}
-          zoom={0.7}
-        />
+      <Grainient
+        className="absolute! h-[300vh]!"
+        color1="#050505"
+        color2="#5227FF"
+        color3="#6ea3f7"
+        timeSpeed={0.45}
+        colorBalance={0}
+        warpStrength={1}
+        warpFrequency={9.3}
+        warpSpeed={1.5}
+        warpAmplitude={5}
+        blendAngle={0}
+        blendSoftness={0.05}
+        rotationAmount={500}
+        noiseScale={2}
+        grainAmount={0.1}
+        grainScale={2}
+        grainAnimated={false}
+        contrast={1.5}
+        gamma={1}
+        saturation={1}
+        centerX={-0.1}
+        centerY={0}
+        zoom={0.7}
+      />
 
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
         <div className="w-full h-screen" id="logo-mask"></div>
@@ -132,8 +143,8 @@ export function Hero() {
           {/* Massive headline */}
           <h1 className="text-[clamp(3rem,12vw,13rem)] font-bold uppercase tracking-tighter leading-[0.85] mb-8">
             <span className="block">Soluciones</span>
-            <span className="block text-[#4b96e3]">Digitales</span>
-            <span className="block">a medida</span>
+            <span className="block text-[#4b96e3] hero-font lowercase h-56">Digitales</span>
+            <span className="block -mt-5">a medida</span>
           </h1>
 
           {/* Subheadline */}
