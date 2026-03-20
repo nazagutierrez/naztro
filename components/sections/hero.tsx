@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Plasma from "../Plasma";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Grainient from "../Grainient";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,10 +67,45 @@ export function Hero() {
       },
       "<"
     );
+
+    tl.to(
+      "#logo-mask",
+      {
+        opacity: 0,
+        duration: 1,
+        ease: "power1.inOut",
+      },
+    ), "-=0.3";
   }, []);
 
   return (
     <div className="overflow-hidden">
+        <Grainient
+          className="absolute!"
+          color1="#050505"
+          color2="#5227FF"
+          color3="#6ea3f7"
+          timeSpeed={0.45}
+          colorBalance={0}
+          warpStrength={1}
+          warpFrequency={4.1}
+          warpSpeed={1.5}
+          warpAmplitude={5}
+          blendAngle={0}
+          blendSoftness={0.05}
+          rotationAmount={500}
+          noiseScale={2}
+          grainAmount={0.1}
+          grainScale={2}
+          grainAnimated={false}
+          contrast={1.5}
+          gamma={1}
+          saturation={1}
+          centerX={0}
+          centerY={0.5}
+          zoom={0.7}
+        />
+
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
         <div className="w-full h-screen" id="logo-mask"></div>
         <img
