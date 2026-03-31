@@ -9,14 +9,16 @@ import { FAQ } from "@/components/sections/faq"
 import { CTA } from "@/components/sections/cta"
 import { Footer } from "@/components/sections/footer"
 import { NoiseTexture } from "@/components/noise-texture"
+import { CTASection } from "@/components/hero-dithering-card"
 
 export default function App() {
   return (
     <>
-      <NoiseTexture />
       <Header />
+      <CTASection />
+      {/* <NoiseTexture /> */}
       <main>
-        <Hero />
+        {/* <Hero /> */}
         <StatsMarquee />
         <Features />
         <Benefits />

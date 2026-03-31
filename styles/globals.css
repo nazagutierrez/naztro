@@ -11,14 +11,21 @@
   );
 }
 
+.main-font {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .hero-font {
     -webkit-text-fill-color: transparent;
     background-image: linear-gradient(90deg,#fff,#145cf8);
     -webkit-background-clip: text;
     background-clip: text;
-    background-size: 100% auto;
+    background-size: 130% auto;
+    font-weight: 400;
+    font-size: 3.5rem;
     font-family: "IBM Plex Serif", serif;
     font-style: italic;
-    font-weight: 400;
 }
 
