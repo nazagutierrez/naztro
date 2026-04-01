@@ -31,7 +31,7 @@ export function Hero() {
 
     tl.to("#star-light-img", {
       opacity: 1,
-      scale: .6,
+      scale: 0.6,
       duration: 0.4,
     });
 
@@ -42,18 +42,26 @@ export function Hero() {
       duration: 1,
     });
 
-    tl.to("#logo-img", {
-      opacity: 1,
-      duration: 0.3,
-      scale: 0.8,
-    }, "<0.7");
+    tl.to(
+      "#logo-img",
+      {
+        opacity: 1,
+        duration: 0.3,
+        scale: 0.8,
+      },
+      "<0.7",
+    );
 
-    tl.to("#logo-img", {
-      delay: 0.1,
-      duration: 2,
-      scale: 30,
-      opacity: 0,
-    }, "<0.3");
+    tl.to(
+      "#logo-img",
+      {
+        delay: 0.1,
+        duration: 1,
+        scale: 30,
+        opacity: 0,
+      },
+      "<0.3",
+    );
 
     tl.fromTo(
       "#logo-mask",
@@ -62,40 +70,38 @@ export function Hero() {
       },
       {
         "--size": "15000px", // ajustá según pantalla
-        duration: 2,
+        duration: 1,
         ease: "power3.out",
       },
-      "<"
+      "<",
     );
 
     tl.to(
       "#logo-mask",
       {
         opacity: 0,
-        duration: 1,
+        duration: 2,
         ease: "power1.inOut",
       },
-      "-=1"
+      "-=1",
     );
-    
-    tl.to(
-      ".hero-font",
-      {
-        backgroundSize: "40% auto",
-        duration: 1,
-        filter: "saturate(2)",
-        ease: "power1.inOut",
-      },
-    ), "<";
+
+    (tl.to(".hero-font", {
+      backgroundSize: "40% auto",
+      duration: 1,
+      filter: "saturate(2)",
+      ease: "power1.inOut",
+    }),
+      "<");
   }, []);
 
   return (
     <div className="overflow-hidden">
       <Grainient
         className="absolute! h-[300vh]!"
-        color1="#050505"
-        color2="#5227FF"
-        color3="#6ea3f7"
+        color1="#0B1E3A"
+        color2="#3A7BD5"
+        color3="#6A4CFF"
         timeSpeed={0.45}
         colorBalance={0}
         warpStrength={1}
@@ -143,7 +149,9 @@ export function Hero() {
           {/* Massive headline */}
           <h1 className="text-[clamp(3rem,12vw,13rem)] font-bold uppercase tracking-tighter leading-[0.85] mb-8">
             <span className="block">Soluciones</span>
-            <span className="block text-[#4b96e3] hero-font lowercase h-56">Digitales</span>
+            <span className="block text-[#4b96e3] hero-font lowercase h-56">
+              Digitales
+            </span>
             <span className="block -mt-5">a medida</span>
           </h1>
 
@@ -164,7 +172,6 @@ export function Hero() {
             </button>
           </div>
         </motion.div>
-
       </section>
     </div>
   );
