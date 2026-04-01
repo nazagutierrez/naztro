@@ -14,7 +14,7 @@ import { CTASection } from "@/components/hero-dithering-card"
 export default function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <CTASection />
       {/* <NoiseTexture /> */}
       <main>
