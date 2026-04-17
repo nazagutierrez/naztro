@@ -1,5 +1,3 @@
-import { Header } from "@/components/header"
-import { Hero } from "@/components/sections/hero"
 import { StatsMarquee } from "@/components/sections/stats-marquee"
 import { Features } from "@/components/sections/features"
 import { Benefits } from "@/components/sections/benefits"
@@ -8,12 +6,13 @@ import { Pricing } from "@/components/sections/pricing"
 import { FAQ } from "@/components/sections/faq"
 import { CTA } from "@/components/sections/cta"
 import { Footer } from "@/components/sections/footer"
-import { NoiseTexture } from "@/components/noise-texture"
 import { CTASection } from "@/components/hero-dithering-card"
+import { SmoothScroll } from "@/components/smooth-scroll"
+import VerticalTabs from "@/components/VerticalTabs"
 
 export default function App() {
   return (
-    <>
+    <SmoothScroll>
       {/* <Header /> */}
       <CTASection />
       {/* <NoiseTexture /> */}
@@ -22,12 +21,13 @@ export default function App() {
         <StatsMarquee />
         <Features />
         <Benefits />
+        <VerticalTabs />
         <Testimonials />
         <Pricing />
         <FAQ />
         <CTA />
       </main>
       <Footer />
-    </>
+    </SmoothScroll>
   )
 }
