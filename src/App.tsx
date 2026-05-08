@@ -9,7 +9,8 @@ import { Footer } from "@/components/sections/footer"
 import { CTASection } from "@/components/hero-dithering-card"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import VerticalTabs from "@/components/VerticalTabs"
-
+import AboutSection from "@/components/AboutSection"
+import ServicesSection from "@/components/ServicesSection"
 export default function App() {
   return (
     <SmoothScroll>
@@ -18,12 +19,13 @@ export default function App() {
       {/* <NoiseTexture /> */}
       <main>
         {/* <Hero /> */}
-        <StatsMarquee />
-        <Features />
-        <Benefits />
+        {/* <StatsMarquee /> */}
+        {/* <Features /> */}
+        {/* <Benefits /> */}
         <VerticalTabs />
+        <ServicesSection />
+        <AboutSection />
         <Testimonials />
-        <Pricing />
         <FAQ />
         <CTA />
       </main>

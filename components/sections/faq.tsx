@@ -5,34 +5,29 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
-    question: "How long does a typical project take?",
+    question: "¿Cuánto tarda el desarrollo de un proyecto?",
     answer:
-      "Project timelines vary based on scope. A single landing page can be completed in 1-2 weeks, while a full website redesign typically takes 4-8 weeks. We'll provide a detailed timeline during our initial consultation.",
+      "Depende del alcance. Una landing page interactiva puede tomar de 1 a 2 semanas, mientras que plataformas complejas o e-commerce pueden llevar de 4 a 8 semanas. Siempre entregamos un cronograma claro antes de empezar.",
   },
   {
-    question: "Do you work with clients globally?",
+    question: "¿Ofrecen rediseño de sitios ya existentes?",
     answer:
-      "Absolutely. We work with clients worldwide and have established efficient remote workflows. Our team is distributed across multiple time zones, ensuring we can accommodate various schedules.",
+      "Sí. Analizamos tu plataforma actual, identificamos los cuellos de botella en experiencia de usuario o rendimiento, y reescribimos o rediseñamos las partes clave para llevarlo al siguiente nivel.",
   },
   {
-    question: "What's your design process?",
+    question: "¿Qué tecnologías utilizan?",
     answer:
-      "We start with discovery and strategy, move into wireframing and prototyping, then design and development. Throughout the process, we involve you at key decision points to ensure the final product exceeds expectations.",
+      "Nos especializamos en el ecosistema moderno: React, Next.js, TypeScript y TailwindCSS para el frontend. En el backend, usamos Node, APIs robustas o soluciones modernas según lo requiera la escalabilidad de tu negocio.",
   },
   {
-    question: "Do you handle development as well?",
+    question: "¿Cómo es el flujo de trabajo con ustedes?",
     answer:
-      "Yes, we're a full-service studio. Our team includes designers, developers, and motion specialists who work together to bring your vision to life. We deliver fully functional, production-ready websites.",
+      "Trabajamos por sprints. Empezamos con el diseño UI/UX y aprobaciones iterativas. Luego pasamos a código y hacemos despliegues constantes para que puedas ir probando la aplicación en tiempo real.",
   },
   {
-    question: "What technologies do you use?",
+    question: "¿Dan soporte una vez terminado el sitio?",
     answer:
-      "We primarily work with React, Next.js, and Framer Motion for web development. For design, we use Figma. Our stack is chosen for performance and scalability, ensuring your site runs smoothly at any scale.",
-  },
-  {
-    question: "Can you work with our existing brand?",
-    answer:
-      "Definitely. We love working with established brands and bringing kinetic energy to existing visual systems. We'll adapt our approach to complement and elevate your current brand identity.",
+      "Por supuesto. Ofrecemos planes de mantenimiento para monitorear el rendimiento, actualizar herramientas y agregar nuevas features a medida que tu negocio crezca.",
   },
 ];
 
@@ -40,58 +35,85 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-32 px-4 md:px-8 border-t-2 border-[#3F3F46]">
-      <div className="max-w-[95vw] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+    <section className="w-full py-32 bg-background relative overflow-hidden flex flex-col items-center">
+      
+      {/* Background Glow */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />
+
+      <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto z-10 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          
           {/* Header */}
-          <div>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter leading-none mb-6 sticky top-32">
-              FAQ
+          <div className="lg:col-span-5 flex flex-col items-start">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-4 py-1.5 text-sm font-medium text-sky-400 backdrop-blur-sm w-max mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+              </span>
+              Resolvemos tus dudas
+            </div>
+            
+            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1] flex flex-col mb-6">
+              <span className="main-font">PREGUNTAS </span>
+              <span className="hero-font text-sky-500">FRECUENTES.</span>
             </h2>
+            
+            <p className="text-white/60 text-lg max-w-md">
+              Todo lo que necesitas saber sobre nuestro proceso, tecnologías y cómo podemos ayudarte a escalar tu producto digital.
+            </p>
           </div>
 
           {/* Questions */}
-          <div className="space-y-0">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="border-b-2 border-[#3F3F46] last:border-b-0"
-              >
-                <button
-                  className="w-full py-8 flex items-center justify-between text-left group"
-                  onClick={() =>
-                    setOpenIndex(openIndex === index ? null : index)
-                  }
-                  aria-expanded={openIndex === index}
+          <div className="lg:col-span-7 space-y-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div
+                  key={index}
+                  className={`border transition-all duration-300 rounded-[16px] overflow-hidden ${
+                    isOpen 
+                      ? "border-sky-500/40 bg-[#0f172a]/80 shadow-[0_0_30px_-5px_rgba(14,165,233,0.15)]" 
+                      : "border-white/5 bg-[#0a0f1a]/50 hover:bg-[#0a0f1a]/80 hover:border-white/10"
+                  }`}
                 >
-                  <span className="text-lg md:text-xl lg:text-2xl font-bold uppercase tracking-tighter pr-8 transition-colors duration-300 group-hover:text-[#4b96e3]">
-                    {faq.question}
-                  </span>
-                  <span
-                    className="flex-shrink-0 w-10 h-10 border-2 border-[#3F3F46] flex items-center justify-center text-2xl transition-all duration-300 group-hover:border-[#4b96e3] group-hover:text-[#4b96e3]"
-                    aria-hidden="true"
+                  <button
+                    className="w-full px-6 py-6 flex items-center justify-between text-left group"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    aria-expanded={isOpen}
                   >
-                    {openIndex === index ? "−" : "+"}
-                  </span>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
+                    <span className={`text-lg md:text-xl font-medium tracking-tight transition-colors duration-300 ${isOpen ? "text-sky-400" : "text-white group-hover:text-sky-300"}`}>
+                      {faq.question}
+                    </span>
+                    <span
+                      className={`flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center text-lg transition-all duration-300 ${
+                        isOpen 
+                          ? "border-sky-500 bg-sky-500/10 text-sky-400 rotate-180" 
+                          : "border-white/20 text-white/50 group-hover:border-sky-500/50 group-hover:text-sky-400"
+                      }`}
+                      aria-hidden="true"
                     >
-                      <p className="text-base md:text-lg text-[#A1A1AA] leading-relaxed pb-8">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+                      {isOpen ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-sm md:text-base text-white/60 leading-relaxed px-6 pb-6">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

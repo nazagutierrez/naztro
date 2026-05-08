@@ -2,124 +2,109 @@
 
 const navigation = {
   work: [
-    { name: "Projects", href: "#" },
-    { name: "Case Studies", href: "#" },
-    { name: "Process", href: "#" },
+    { name: "Proyectos", href: "#" },
+    { name: "Servicios", href: "#" },
+    { name: "Testimonios", href: "#" },
   ],
   company: [
-    { name: "About", href: "#" },
-    { name: "Team", href: "#" },
-    { name: "Careers", href: "#" },
-  ],
-  resources: [
-    { name: "Blog", href: "#" },
-    { name: "Newsletter", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Nosotros", href: "#" },
+    { name: "El Equipo", href: "#" },
+    { name: "Contacto", href: "#" },
   ],
   social: [
-    { name: "Twitter", href: "#" },
     { name: "Instagram", href: "#" },
     { name: "LinkedIn", href: "#" },
-    { name: "Dribbble", href: "#" },
+    { name: "GitHub", href: "#" },
   ],
 };
 
 export function Footer() {
   return (
-    <footer className="bg-[#4b96e3] text-black border-t-2 border-black">
-      <div className="py-20 md:py-32 px-4 md:px-8">
-        <div className="max-w-[95vw] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-20 md:mb-32">
-            {/* Work */}
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest mb-6 opacity-50">
-                Work
-              </h3>
-              <ul className="space-y-4">
-                {navigation.work.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-base md:text-lg font-medium uppercase tracking-tight hover:opacity-50 transition-opacity"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+    <footer className="w-full bg-[#030712] border-t border-white/5 relative overflow-hidden">
+      
+      {/* Luces sutiles */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />
 
-            {/* Company */}
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest mb-6 opacity-50">
-                Company
-              </h3>
-              <ul className="space-y-4">
-                {navigation.company.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-base md:text-lg font-medium uppercase tracking-tight hover:opacity-50 transition-opacity"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest mb-6 opacity-50">
-                Resources
-              </h3>
-              <ul className="space-y-4">
-                {navigation.resources.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-base md:text-lg font-medium uppercase tracking-tight hover:opacity-50 transition-opacity"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Social */}
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest mb-6 opacity-50">
-                Social
-              </h3>
-              <ul className="space-y-4">
-                {navigation.social.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-base md:text-lg font-medium uppercase tracking-tight hover:opacity-50 transition-opacity"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <div className="py-20 md:py-32 px-4 md:px-8 max-w-[95vw] mx-auto relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-20 md:mb-32">
+          {/* Brand/Info Column */}
+          <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
+            <span className="main-font text-3xl text-white tracking-tight">NAZ<span className="text-sky-500">TRO</span></span>
+            <p className="text-white/50 text-sm leading-relaxed max-w-xs mt-2">
+              Transformamos problemas complejos en productos simples, estéticos y altamente funcionales.
+            </p>
           </div>
 
-          {/* Large logo */}
-          <div className="border-t-2 border-black pt-12 md:pt-20">
-            <div className="text-[clamp(3rem,15vw,12rem)] font-bold uppercase tracking-tighter leading-none">
-              KINETIC
-            </div>
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mt-8">
-              <p className="text-sm uppercase tracking-widest opacity-50">
-                Motion Design Studio
-              </p>
-              <p className="text-sm uppercase tracking-widest opacity-50">
-                © {new Date().getFullYear()} All Rights Reserved
-              </p>
-            </div>
+          {/* Work */}
+          <div>
+            <h3 className="text-xs font-mono text-sky-400 uppercase tracking-widest mb-6">
+              Navegación
+            </h3>
+            <ul className="space-y-4">
+              {navigation.work.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className="text-white/70 hover:text-sky-400 text-sm font-medium transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="text-xs font-mono text-sky-400 uppercase tracking-widest mb-6">
+              Agencia
+            </h3>
+            <ul className="space-y-4">
+              {navigation.company.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className="text-white/70 hover:text-sky-400 text-sm font-medium transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Social */}
+          <div>
+            <h3 className="text-xs font-mono text-sky-400 uppercase tracking-widest mb-6">
+              Sociales
+            </h3>
+            <ul className="space-y-4">
+              {navigation.social.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className="text-white/70 hover:text-sky-400 text-sm font-medium transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Large logo */}
+        <div className="border-t border-white/5 pt-12 md:pt-20 flex flex-col items-center">
+          <div className="hero-font text-[clamp(4rem,18vw,16rem)] text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent leading-none select-none text-center w-full">
+            NAZTRO
+          </div>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mt-8 md:mt-12 w-full px-4">
+            <p className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-white/30">
+              Desarrollo Web & UI/UX
+            </p>
+            <p className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-white/30 text-center md:text-right">
+              © {new Date().getFullYear()} Naztro. Todos los derechos reservados.
+            </p>
           </div>
         </div>
       </div>

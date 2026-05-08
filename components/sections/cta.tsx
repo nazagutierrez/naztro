@@ -6,18 +6,28 @@ export function CTA() {
   const [email, setEmail] = useState("");
 
   return (
-    <section className="py-32 px-4 md:px-8 border-t-2 border-[#3F3F46]">
-      <div className="max-w-[95vw] mx-auto text-center">
-        {/* Massive headline */}
-        <h2 className="text-[clamp(2.5rem,10vw,10rem)] font-bold uppercase tracking-tighter leading-[0.85] mb-8">
-          Let&apos;s Build
-          <br />
-          <span className="text-[#4b96e3]">Something Bold</span>
-        </h2>
+    <section className="w-full py-32 bg-background relative overflow-hidden flex flex-col items-center">
+      
+      {/* Glow central intenso */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-        <p className="text-lg md:text-xl lg:text-2xl text-[#A1A1AA] max-w-2xl mx-auto leading-tight mb-16">
-          Ready to make your digital presence impossible to ignore? Drop your
-          email and let&apos;s start the conversation.
+      <div className="w-full max-w-4xl px-4 mx-auto z-10 relative text-center">
+        
+        <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-4 py-1.5 text-sm font-medium text-sky-400 backdrop-blur-sm w-max mb-8 mx-auto">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+          </span>
+          Listos para empezar
+        </div>
+
+        <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.1] flex flex-col items-center mb-6">
+          <span className="main-font">EMPECEMOS </span>
+          <span className="hero-font text-sky-500">TU PROYECTO.</span>
+        </h2>
+        
+        <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-12">
+          Déjanos tu correo y nos pondremos en contacto contigo en menos de 24 horas para hablar sobre cómo podemos digitalizar tu idea.
         </p>
 
         {/* Email input */}
@@ -25,34 +35,31 @@ export function CTA() {
           onSubmit={(e) => {
             e.preventDefault();
             // Handle form submission
+            console.log("Email submitted:", email);
+            setEmail("");
           }}
-          className="max-w-3xl mx-auto"
+          className="max-w-2xl mx-auto relative group"
         >
-          <div className="flex flex-col md:flex-row gap-4">
+          {/* Border glow en el hover del form */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-sky-500 to-sky-300 rounded-[20px] blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200 pointer-events-none"></div>
+          
+          <div className="relative flex flex-col sm:flex-row gap-3 bg-[#0a0f1a] p-2 rounded-[18px] border border-white/10 backdrop-blur-md shadow-xl">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="YOUR@EMAIL.COM"
-              className="flex-1 h-20 md:h-24 px-6 bg-transparent border-b-2 border-[#3F3F46] text-2xl md:text-4xl font-bold uppercase tracking-tighter placeholder:text-[#27272A] focus:border-[#4b96e3] focus:outline-none transition-colors"
+              placeholder="tu@email.com"
+              className="flex-1 h-14 md:h-16 px-6 bg-transparent text-white text-lg font-medium placeholder:text-white/30 focus:outline-none focus:ring-0"
               required
             />
             <button
               type="submit"
-              className="h-20 md:h-24 px-12 bg-[#4b96e3] text-black font-bold uppercase tracking-tighter text-xl md:text-2xl transition-all hover:scale-105 active:scale-95"
+              className="h-14 md:h-16 px-8 md:px-12 bg-sky-500 hover:bg-sky-400 text-[#030712] rounded-[12px] font-bold tracking-wide text-lg transition-all active:scale-95 shadow-[0_0_20px_rgba(14,165,233,0.3)]"
             >
-              Send
+              ENVIAR
             </button>
           </div>
         </form>
-
-        {/* Decorative background number */}
-        <div
-          className="relative mt-32 text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold text-[#27272A] leading-none select-none pointer-events-none"
-          aria-hidden="true"
-        >
-          24/7
-        </div>
       </div>
     </section>
   );

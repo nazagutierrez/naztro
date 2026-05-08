@@ -82,14 +82,14 @@ export function VerticalTabs() {
   };
 
   return (
-    <section className="w-full bg-background py-8 md:py-16 lg:py-24">
+    <section className="w-full h-screen bg-background flex items-center">
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Content */}
           <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1 pt-4">
             <div className="space-y-1 mb-12">
-              <h2 className="tracking-tighter text-balance text-6xl! font-medium md:text-4xl lg:text-5xl text-neutral-300">
-                Nuestros proyectos
+              <h2 className="main-font text-balance text-6xl! font-medium md:text-4xl lg:text-5xl text-neutral-300">
+                NUESTROS TRABAJOS
               </h2>
               <span className="text-[10px] font-medium text-muted-neutral-300 uppercase tracking-[0.3em] block ml-0.5">
                 (RESUMEN)
@@ -104,9 +104,9 @@ export function VerticalTabs() {
                     key={service.id}
                     onClick={() => handleTabClick(index)}
                     className={
-                      `group relative flex items-start gap-4 py-6 md:py-8 text-left transition-all duration-500 border-t border-border/50 first:border-0 ${isActive
+                      `group relative flex items-start gap-4 py-6 md:py-8 text-left transition-all duration-500 border-t border-sky-500/50 first:border-0 ${isActive
                         ? "text-neutral-300"
-                        : "text-muted-neutral-300/60 hover:text-neutral-300"
+                        : "text-neutral-300/60 hover:text-neutral-300"
                       }`
                     }
                   >
@@ -114,7 +114,7 @@ export function VerticalTabs() {
                       {isActive && (
                         <motion.div
                           key={`progress-${index}-${isPaused}`}
-                          className="absolute top-0 left-0 w-full bg-neutral-300 origin-top"
+                          className="absolute top-0 left-0 w-full bg-neutral-400 origin-top"
                           initial={{ height: "0%" }}
                           animate={
                             isPaused ? { height: "0%" } : { height: "100%" }
@@ -161,13 +161,13 @@ export function VerticalTabs() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 flex flex-col justify-end h-full order-1 lg:order-2 shadow-[0px_0px_80px_-20px_rgba(13,148,255,0.2)] border border-sky-500/30 rounded-3xl md:rounded-[2.5rem]">
+          <div className="lg:col-span-7 flex flex-col justify-end h-full order-1 lg:order-2 shadow-[0px_0px_80px_-20px_rgba(13,148,255,0.2)] border border-sky-500/30 rounded-xl">
             <div
               className="relative group/gallery"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <div className="relative aspect-4/5 md:aspect-4/3 lg:aspect-16/11 rounded-3xl md:rounded-[2.5rem] overflow-hidden">
+              <div className="relative aspect-4/5 md:aspect-4/3 lg:aspect-16/11 rounded-xl overflow-hidden">
                 <AnimatePresence
                   initial={false}
                   custom={direction}
