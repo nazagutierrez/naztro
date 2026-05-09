@@ -11,14 +11,14 @@ const SERVICES = [
     description:
       "Creating beautiful, functional, and user-centric digital experiences.",
     image:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200",
+      "/piso-blue.png",
   },
   {
     id: "02",
     title: "Nordicaps",
     description: "Building high-performance, animated websites with Framer.",
     image:
-      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1200",
+      "/nordicaps-blue.png",
   },
   {
     id: "03",
@@ -26,7 +26,7 @@ const SERVICES = [
     description:
       "Defining your brand's visual identity and voice for a lasting impression.",
     image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200",
+      "/dymo-blue.png",
   },
 ];
 
