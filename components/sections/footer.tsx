@@ -25,11 +25,20 @@ export function Footer() {
       {/* Luces sutiles */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />
 
+      {/* Planeta asomándose */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[85%] w-[200vw] md:w-[120vw] lg:w-[100vw] max-w-[2000px] aspect-square rounded-full border-t border-sky-400/50 bg-sky-400/5 shadow-[0_-20px_80px_rgba(56,189,248,0.1)] pointer-events-none z-0">
+        <img 
+          src="/star-light.webp" 
+          alt="Star Flare" 
+          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] opacity-80 mix-blend-screen pointer-events-none"
+        />
+      </div>
+
       <div className="py-20 md:py-32 px-4 md:px-8 max-w-[95vw] mx-auto relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-20 md:mb-32">
           {/* Brand/Info Column */}
           <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
-            <span className="main-font text-3xl text-white tracking-tight">NAZ<span className="text-sky-500">TRO</span></span>
+            <span className="main-font text-3xl text-white tracking-tight">NAZTRO</span>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs mt-2">
               Transformamos problemas complejos en productos simples, estéticos y altamente funcionales.
             </p>
