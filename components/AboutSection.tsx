@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import AsciiLogo from "./AsciiLogo";
 
 const Dithering = lazy(() =>
   import("@paper-design/shaders-react").then((mod) => ({

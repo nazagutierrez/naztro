@@ -1,27 +1,17 @@
-import { StatsMarquee } from "@/components/sections/stats-marquee"
-import { Features } from "@/components/sections/features"
-import { Benefits } from "@/components/sections/benefits"
-import { Testimonials } from "@/components/sections/testimonials"
-import { Pricing } from "@/components/sections/pricing"
-import { FAQ } from "@/components/sections/faq"
-import { CTA } from "@/components/sections/cta"
-import { Footer } from "@/components/sections/footer"
-import { CTASection } from "@/components/hero-dithering-card"
-import { SmoothScroll } from "@/components/smooth-scroll"
+import { Testimonials } from "@/components/sections/Testimonials"
+import { FAQ } from "@/components/sections/Faq"
+import { CTA } from "@/components/sections/Cta"
+import { Footer } from "@/components/sections/Footer"
+import { CTASection } from "@/components/Hero"
+import { SmoothScroll } from "@/components/ScrollWrapper"
 import VerticalTabs from "@/components/VerticalTabs"
 import AboutSection from "@/components/AboutSection"
 import ServicesSection from "@/components/ServicesSection"
 export default function App() {
   return (
     <SmoothScroll>
-      {/* <Header /> */}
       <CTASection />
-      {/* <NoiseTexture /> */}
       <main>
-        {/* <Hero /> */}
-        {/* <StatsMarquee /> */}
-        {/* <Features /> */}
-        {/* <Benefits /> */}
         <VerticalTabs />
         <ServicesSection />
         <AboutSection />
