@@ -66,26 +66,18 @@ export function AboutSection() {
 
           {/* Right Column: Ascii Logo & Dithering */}
           <div className="lg:col-span-6 h-full min-h-[500px] flex flex-col justify-center order-1 lg:order-2">
-            <div className="relative w-full aspect-square md:aspect-auto md:h-[700px] rounded-[28px] border border-sky-700 shadow-[0_0_80px_-20px_rgba(14,165,233,0.2)] overflow-hidden flex items-center justify-center group/card bg-[#030712]">
+            <div className="relative w-full aspect-square md:aspect-auto md:h-[700px] rounded-[28px] border border-sky-700/30 shadow-[0_0_80px_-20px_rgba(14,165,233,0.2)] overflow-hidden flex items-center justify-center group/card bg-[#030712]">
               
               {/* Background Dithering (Estilo Hero) */}
               <Suspense fallback={<div className="absolute inset-0 bg-[#030712]" />}>
                 <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none transition-opacity duration-700 group-hover/card:opacity-60">
-                  <Dithering
-                    colorBack="#00000000" // Transparent
-                    colorFront="#1c8eff" // Accent sky blue
-                    shape="warp"
-                    type="4x4"
-                    speed={0.4}
-                    className="size-full"
-                    minPixelRatio={1}
-                  />
+                  <img src="../public/naza-marce.png" className="h-full w-full object-cover" alt="" />
                 </div>
               </Suspense>
 
               {/* Gradient Overlays para profundidad */}
-              <div className="absolute inset-0 z-1 bg-gradient-to-t from-[#030712] via-transparent to-[#030712]/30 pointer-events-none" />
-              <div className="absolute inset-0 z-1 bg-gradient-to-r from-[#030712] via-transparent to-[#030712]/30 pointer-events-none" />
+              <div className="absolute inset-0 z-1 bg-gradient-to-t from-[#0307123a] via-transparent to-[#030712]/20 pointer-events-none" />
+              <div className="absolute inset-0 z-1 bg-gradient-to-r from-[#0307123a] via-transparent to-[#030712]/20 pointer-events-none" />
 
               {/* Contenedor del logo interactivo */}
               <div className="relative z-10 transform transition-transform duration-1000 ease-out group-hover/card:scale-105">
