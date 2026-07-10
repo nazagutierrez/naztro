@@ -20,7 +20,7 @@ const navigation = {
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[url('/rough-cloth-light.png')] bg-[#030712] border-t border-white/5 relative overflow-hidden">
+    <footer className="w-full bg-[url('/buried.png')] bg-[#030712] border-t border-white/5 relative overflow-hidden">
       
       {/* Luces sutiles */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />

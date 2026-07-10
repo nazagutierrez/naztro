@@ -66,7 +66,7 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: n
 
       <div className="relative z-10 flex-1 flex flex-col">
         <div className="flex items-start justify-between mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-[#030712]/80 border border-white/10 flex items-center justify-center text-white/70 group-hover:scale-110 group-hover:border-sky-500/50 group-hover:bg-sky-500/10 group-hover:text-sky-400 transition-all duration-500 shadow-lg">
+          <div className="w-14 h-14 rounded-2xl bg-[#030712]/80 border border-white/10 flex items-center justify-center text-white/70 group-hover:border-sky-500/50 group-hover:text-sky-400 transition-all shadow-lg">
             <Icon strokeWidth={1.5} className="w-6 h-6" />
           </div>
           <span className="font-mono text-3xl md:text-4xl font-light text-white/5 group-hover:text-sky-500/20 transition-colors duration-500 select-none">
