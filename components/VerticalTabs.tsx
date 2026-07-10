@@ -82,7 +82,7 @@ export function VerticalTabs() {
   };
 
   return (
-    <section className="w-full h-screen bg-background flex items-center">
+    <section className="w-full bg-transparent h-screen flex items-center">
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Content */}
@@ -96,7 +96,7 @@ export function VerticalTabs() {
               </span>
             </div>
 
-            <div className="flex flex-col space-y-0">
+            <div className="flex flex-col space-y-0 min-h-[400px] md:min-h-[450px] lg:min-h-[420px]">
               {SERVICES.map((service, index) => {
                 const isActive = activeIndex === index;
                 return (
@@ -104,7 +104,7 @@ export function VerticalTabs() {
                     key={service.id}
                     onClick={() => handleTabClick(index)}
                     className={
-                      `group relative flex items-start gap-4 py-6 md:py-8 text-left transition-all duration-500 border-t border-sky-500/50 first:border-0 ${isActive
+                      `group relative flex items-start gap-4 py-6 md:py-8 text-left transition-all duration-500 border-t border-sky-500/50 first:border-0 cursor-pointer ${isActive
                         ? "text-neutral-300"
                         : "text-neutral-300/60 hover:text-neutral-300"
                       }`
@@ -202,7 +202,7 @@ export function VerticalTabs() {
                       e.stopPropagation();
                       handlePrev();
                     }}
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-border/50 flex items-center justify-center text-neutral-300 hover:bg-background transition-all active:scale-90"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-border/50 flex items-center justify-center text-neutral-300 hover:bg-background transition-all active:scale-90 cursor-pointer"
                     aria-label="Previous"
                   >
                     {"<"}
@@ -212,7 +212,7 @@ export function VerticalTabs() {
                       e.stopPropagation();
                       handleNext();
                     }}
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-border/50 flex items-center justify-center text-neutral-300 hover:bg-background transition-all active:scale-90"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-border/50 flex items-center justify-center text-neutral-300 hover:bg-background transition-all active:scale-90 cursor-pointer"
                     aria-label="Next"
                   >
                     {">"}

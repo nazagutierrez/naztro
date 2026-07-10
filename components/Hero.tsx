@@ -163,7 +163,7 @@ export function CTASection() {
         onMouseLeave={() => setIsHovered(false)}
         id="ttl-bg"
       >
-        <div className="relative overflow-hidden rounded-[28px] border border-sky-700 shadow-sm min-h-[600px] md:min-h-[750px] flex flex-col items-center justify-center duration-500">
+        <div className="relative overflow-hidden rounded-[28px] border border-sky-700 shadow-sm min-h-[600px] md:min-h-[750px] flex flex-col items-center justify-center duration-500 z-40">
           <Suspense fallback={<div className="absolute inset-0 bg-muted/20" />}>
             <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen">
               <Dithering
@@ -172,7 +172,7 @@ export function CTASection() {
                 shape="warp"
                 type="4x4"
                 speed={isHovered ? 0.6 : 0.2}
-                className="size-full"
+                className="size-full bg-black"
                 minPixelRatio={1}
               />
             </div>

@@ -7,6 +7,8 @@ import { SmoothScroll } from "@/components/ScrollWrapper"
 import VerticalTabs from "@/components/VerticalTabs"
 import AboutSection from "@/components/AboutSection"
 import ServicesSection from "@/components/ServicesSection"
+import { WhyUs } from "@/components/sections/WhyUs"
+import { HowWeWork } from "@/components/sections/HowWeWork"
 export default function App() {
   return (
     <SmoothScroll>
@@ -14,6 +16,8 @@ export default function App() {
       <main>
         <VerticalTabs />
         <ServicesSection />
+        <WhyUs />
+        <HowWeWork />
         <AboutSection />
         <Testimonials />
         <FAQ />

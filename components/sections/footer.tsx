@@ -20,7 +20,7 @@ const navigation = {
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#030712] border-t border-white/5 relative overflow-hidden">
+    <footer className="w-full bg-[url('/rough-cloth-light.png')] bg-[#030712] border-t border-white/5 relative overflow-hidden">
       
       {/* Luces sutiles */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />
@@ -46,7 +46,7 @@ export function Footer() {
 
           {/* Work */}
           <div>
-            <h3 className="text-xs font-mono text-sky-400 uppercase tracking-widest mb-6">
+            <h3 className="text-sm font-mono text-sky-400 uppercase tracking-widest mb-6">
               Navegación
             </h3>
             <ul className="space-y-4">
@@ -65,7 +65,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-xs font-mono text-sky-400 uppercase tracking-widest mb-6">
+            <h3 className="text-sm font-mono text-sky-400 uppercase tracking-widest mb-6">
               Agencia
             </h3>
             <ul className="space-y-4">
@@ -84,7 +84,7 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h3 className="text-xs font-mono text-sky-400 uppercase tracking-widest mb-6">
+            <h3 className="text-sm font-mono text-sky-400 uppercase tracking-widest mb-6">
               Sociales
             </h3>
             <ul className="space-y-4">

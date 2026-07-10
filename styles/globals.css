@@ -11,6 +11,20 @@
   );
 }
 
+body {
+  /* background-color: rgb(0, 0, 0);
+  background-image: url('/dark-denim-3.png'); */
+  /* background-color: rgb(0, 0, 0);
+  background-image: url('/green-fibers.png'); */
+  /* background-color: rgb(0, 0, 0);
+  background-image: url('/ice-age copy.png'); */
+  background-color: rgb(2, 0, 8);
+  background-image: url('/rough-cloth-light.png');
+  background-size: auto;
+  background-position: top left;
+  background-repeat: repeat;
+}
+
 .main-font {
   font-family: "Special Gothic Expanded One", sans-serif;
   font-weight: 400;

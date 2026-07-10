@@ -1,91 +1,175 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import AsciiLogo from "./AsciiLogo";
+import { LayoutTemplate, Code2, ShoppingCart, PenTool, ArrowRight } from "lucide-react";
 
 const SERVICES = [
   {
     id: "01",
     title: "Sitios Web & Landings",
-    description: "Creamos sitios web de alto impacto visual diseñados para convertir. Optimizados para SEO, tiempos de carga rápidos y con un diseño moderno que transmite confianza.",
-    icon: "🌐"
+    description: "Creamos sitios web de alto impacto visual diseñados para convertir. Optimizados para SEO, tiempos de carga rápidos y con un diseño moderno que transmite confianza extrema en tu marca.",
+    icon: LayoutTemplate,
   },
   {
     id: "02",
     title: "Sistemas a Medida",
-    description: "Desarrollo de aplicaciones web y plataformas complejas. Desde paneles administrativos y CRMs hasta sistemas de automatización internos para tu negocio.",
-    icon: "⚙️"
+    description: "Desarrollo de aplicaciones web y plataformas complejas. Desde paneles administrativos y CRMs hasta sistemas de automatización internos diseñados para escalar con tu negocio.",
+    icon: Code2,
   },
   {
     id: "03",
     title: "E-commerce",
-    description: "Tiendas online escalables y seguras. Integramos pasarelas de pago y optimizamos todo el flujo de compra para maximizar tus ventas y fidelizar clientes.",
-    icon: "🛒"
+    description: "Tiendas online escalables y seguras. Integramos pasarelas de pago y optimizamos obsesivamente todo el flujo de compra para maximizar tus ventas y retener clientes.",
+    icon: ShoppingCart,
   },
   {
     id: "04",
     title: "Diseño UX/UI",
-    description: "Interfaces pixel-perfect centradas 100% en el usuario. Nos aseguramos de que cada interacción sea intuitiva, moderna y visualmente increíble.",
-    icon: "✨"
+    description: "Interfaces pixel-perfect centradas 100% en el usuario. Nos aseguramos de que cada interacción sea intuitiva, moderna y visualmente increíble. El diseño no es un adorno, es función.",
+    icon: PenTool,
   }
 ];
 
-export function ServicesSection() {
-  return (
-    <section className="w-full min-h-screen bg-background flex items-center py-24 relative overflow-hidden">
-      
-      {/* Luces de fondo ambientales */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-sky-500/10 blur-[120px] rounded-full pointer-events-none opacity-50" />
-      
-      <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto z-10 relative">
-        <div className="flex flex-col items-center text-center mb-16 md:mb-24">
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.1] flex flex-col items-center">
-            <span className="main-font">NUESTROS </span>
-            <span className="hero-font text-sky-500">SERVICIOS.</span>
-          </h2>
-        </div>
+function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: number }) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const Icon = service.icon;
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(30px)",
+        transition: `opacity 0.6s ease ${index * 100}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 100}ms`
+      }}
+      className="group relative p-8 md:p-10 rounded-[2rem] border border-white/5 bg-[#0a0f1a]/40 overflow-hidden transition-all duration-500 hover:bg-[#0a0f1a]/80 hover:border-sky-500/30 hover:shadow-[0_0_80px_-15px_rgba(14,165,233,0.15)] flex flex-col justify-between min-h-[320px]"
+    >
+      {/* Corner Glow */}
+      <div className="absolute -top-32 -right-32 w-64 h-64 bg-sky-500/10 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full pointer-events-none" />
+      
+      {/* Bottom gradient line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sky-500/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out" />
+
+      <div className="relative z-10 flex-1 flex flex-col">
+        <div className="flex items-start justify-between mb-8">
+          <div className="w-14 h-14 rounded-2xl bg-[#030712]/80 border border-white/10 flex items-center justify-center text-white/70 group-hover:scale-110 group-hover:border-sky-500/50 group-hover:bg-sky-500/10 group-hover:text-sky-400 transition-all duration-500 shadow-lg">
+            <Icon strokeWidth={1.5} className="w-6 h-6" />
+          </div>
+          <span className="font-mono text-3xl md:text-4xl font-light text-white/5 group-hover:text-sky-500/20 transition-colors duration-500 select-none">
+            {service.id}
+          </span>
+        </div>
+        
+        <h3 className="text-2xl font-medium text-white mb-4 group-hover:text-sky-300 transition-colors duration-300">
+          {service.title}
+        </h3>
+        
+        <p className="text-white/50 text-sm md:text-base leading-relaxed group-hover:text-white/70 transition-colors duration-300 flex-1">
+          {service.description}
+        </p>
+
+        <div className="mt-8 flex items-center text-sky-400 font-mono text-xs tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+          Descubrir más <ArrowRight className="w-4 h-4 ml-2" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ServicesSection() {
+  const [titleVisible, setTitleVisible] = useState(false);
+  const titleRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setTitleVisible(true); },
+      { threshold: 0.2 }
+    );
+    if (titleRef.current) observer.observe(titleRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="w-full relative bg-background overflow-hidden py-24 md:py-32">
+      
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none -translate-x-1/2" />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-violet-500/5 blur-[150px] rounded-full pointer-events-none translate-x-1/3" />
+
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
+        
+        {/* Top Header Row: Title & AsciiLogo Showcase */}
+        <div className="flex flex-col lg:flex-row items-stretch gap-6 md:gap-8 mb-6 md:mb-8">
           
-          {/* Left: Ascii Logo (El componente central que querías incluir) */}
-          <div className="lg:col-span-5 flex justify-center order-2 lg:order-1 relative group w-full h-full min-h-[400px] items-center">
-            <div className="absolute inset-0 bg-sky-500/5 blur-3xl rounded-full scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-            <div className="relative z-10 transform transition-transform duration-700 hover:scale-[1.02]">
+          {/* Title Area */}
+          <div 
+            ref={titleRef}
+            className="lg:w-7/12 rounded-[2rem] md:p-12 lg:p-16 flex flex-col justify-center relative overflow-hidden group"
+            style={{
+              opacity: titleVisible ? 1 : 0,
+              transform: titleVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.7s ease, transform 0.7s ease",
+            }}
+          >
+
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/20 bg-sky-500/5 px-4 py-1.5 text-xs font-mono text-sky-400 tracking-widest uppercase mb-8 w-max">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                Nuestras áreas
+              </div>
+              
+              <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.05] flex flex-col mb-6">
+                <span className="main-font">LO QUE</span>
+                <span className="hero-font pb-2">hacemos.</span>
+              </h2>
+              
+              <p className="text-white/50 text-base md:text-lg max-w-xl leading-relaxed">
+                Transformamos ideas complejas en productos digitales de alto rendimiento. 
+                Diseño obsesivo, código impecable y un enfoque total en tus resultados.
+              </p>
+            </div>
+          </div>
+          
+          {/* AsciiLogo Showcase Container */}
+          <div className="lg:w-5/12 min-h-[350px] lg:min-h-0 rounded-[2rem] relative group flex flex-col items-center justify-center">
+            {/* Background Glow */}
+            <div className="absolute  bg-sky-500/20 blur-3xl w-60 h-60 rounded-full scale-150 opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+            
+            {/* Interaction Hint */}
+            <div className="absolute top-18 right-8 font-mono text-[10px] text-sky-400/70 uppercase tracking-widest flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-sky-400/70 animate-ping" />
+              Interactua
+            </div>
+
+            {/* Logo */}
+            <div className="relative z-10 w-full h-full aspect-square transition-transform duration-700 ease-out group-hover:scale-105">
                <AsciiLogo />
             </div>
           </div>
 
-          {/* Right: Grid of services cards */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 order-1 lg:order-2">
-            {SERVICES.map((service) => (
-              <div 
-                key={service.id} 
-                className="group relative p-8 rounded-[24px] border border-white/5 bg-[#0a0f1a]/50 backdrop-blur-md hover:bg-[#0f172a]/80 hover:border-sky-500/40 hover:shadow-[0_0_40px_-10px_rgba(14,165,233,0.15)] transition-all duration-500 overflow-hidden flex flex-col"
-              >
-                {/* Glow interno (Top Right) */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none" />
-
-                <div className="flex justify-between items-start mb-6">
-                  <span className="text-3xl filter grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-110 group-hover:-rotate-12">
-                    {service.icon}
-                  </span>
-                  <span className="text-[10px] md:text-xs font-mono text-sky-300/40 group-hover:text-sky-300/90 transition-colors">
-                    /{service.id}
-                  </span>
-                </div>
-                
-                <h3 className="text-xl md:text-2xl font-medium text-white mb-3 group-hover:text-sky-400 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-white/60 text-sm leading-relaxed flex-grow">
-                  {service.description}
-                </p>
-
-                {/* Línea decorativa inferior que se expande */}
-                <div className="h-[2px] w-0 bg-gradient-to-r from-sky-400 to-sky-600 mt-6 group-hover:w-full transition-all duration-700 ease-out" />
-              </div>
-            ))}
-          </div>
-          
         </div>
+
+        {/* Bottom Row: 2x2 Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {SERVICES.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
+          ))}
+        </div>
+
       </div>
     </section>
   );

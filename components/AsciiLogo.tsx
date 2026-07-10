@@ -163,7 +163,7 @@ export default function AsciiLogo() {
   };
 
   return (
-    <div className="relative inline-flex flex-col items-center justify-center p-8 rounded-3xl overflow-hidden group transition-all duration-500 w-full max-w-full">
+    <div className="relative inline-flex flex-col items-center justify-center rounded-3xl overflow-hidden group transition-all duration-500 w-full max-w-full">
       <canvas ref={srcCanvasRef} className="hidden" />
       <canvas 
         ref={displayCanvasRef} 

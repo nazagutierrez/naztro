@@ -28,7 +28,7 @@ export function AboutSection() {
           
           {/* Left Column: Text & Team */}
           <div className="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1">
-            <div className="space-y-4 mb-10">
+            <div className="space-y-4 mb-14">
 
               <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1] flex flex-col">
                 <span className="main-font">EL </span>
@@ -39,24 +39,21 @@ export function AboutSection() {
               </p>
             </div>
 
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-10">
               {TEAM.map((member, i) => (
                 <div 
                   key={i}
-                  className="group relative flex flex-col gap-2 p-6 md:p-8 rounded-2xl border border-white/5 bg-[#0a0f1a]/50 backdrop-blur-md hover:bg-[#0f172a]/80 hover:border-sky-500/40 hover:shadow-[0_0_30px_-5px_rgba(14,165,233,0.15)] transition-all duration-500 overflow-hidden"
+                  className="relative flex max-w-150 flex-col gap-2 transition-all duration-500"
                 >
-                  {/* Glow effect on hover */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none" />
-                  
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 gap-3 md:gap-0">
-                    <h3 className="text-2xl md:text-3xl font-thin text-white group-hover:text-sky-400 transition-colors">
+                  <div className="flex flex-row justify-between items-center mb-2">
+                    <h3 className="text-2xl md:text-3xl font-thin text-white">
                       {member.name}
                     </h3>
-                    <span className="text-[10px] md:text-xs font-mono text-sky-300/80 uppercase tracking-widest border border-sky-500/20 bg-sky-500/5 px-3 py-1 rounded-full w-max">
+                    <span className="text-[10px] md:text-xs font-mono text-sky-300/80 uppercase tracking-widest border border-sky-500/20 bg-sky-500/5 px-3 py-1 rounded-lg w-max">
                       {member.role}
                     </span>
                   </div>
-                  <p className="text-white/60 text-sm md:text-base leading-relaxed relative z-10 max-w-lg">
+                  <p className="text-white/60 text-sm md:text-base leading-relaxed relative z-10 text-pretty">
                     {member.description}
                   </p>
                 </div>
@@ -70,8 +67,8 @@ export function AboutSection() {
               
               {/* Background Dithering (Estilo Hero) */}
               <Suspense fallback={<div className="absolute inset-0 bg-[#030712]" />}>
-                <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none transition-opacity duration-700 group-hover/card:opacity-60">
-                  <img src="../public/naza-marce.png" className="h-full w-full object-cover" alt="" />
+                <div className="absolute inset-0 z-0 mix-blend-screen pointer-events-none duration-700 opacity-60">
+                  <img src="/naza-marce.png" className="h-full w-full object-cover" alt="" />
                 </div>
               </Suspense>
 
