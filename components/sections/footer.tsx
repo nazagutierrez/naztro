@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const navigation = {
   work: [
     { name: "Proyectos", href: "#" },
@@ -25,17 +27,28 @@ export function Footer() {
       {/* Luces sutiles */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />
 
-      {/* Planeta asomándose */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[85%] w-[200vw] md:w-[120vw] lg:w-[100vw] max-w-[2000px] aspect-square rounded-full border-t border-sky-400/50 bg-sky-400/5 shadow-[0_-20px_80px_rgba(56,189,248,0.1)] pointer-events-none z-0">
-        <img 
+        <motion.img 
           src="/star-light.webp" 
           alt="Star Flare" 
-          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] opacity-80 mix-blend-screen pointer-events-none"
+          className="absolute top-0 left-1/2 w-[300px] md:w-[500px] mix-blend-screen pointer-events-none"
+          initial={{ x: "-50%", y: "-50%", opacity: 0.8 }}
+          animate={{
+            scale: [1, 1, 1.2, 1],
+            opacity: [0.8, 0.8, 1, 0.8],
+            filter: ["brightness(1)", "brightness(1)", "brightness(1.5)", "brightness(1)"]
+          }}
+          transition={{
+            duration: 4,
+            times: [0, 0.5, 0.75, 1],
+            ease: "easeInOut",
+            repeat: Infinity
+          }}
         />
       </div>
 
-      <div className="py-20 md:py-32 px-4 md:px-8 max-w-[95vw] mx-auto relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-20 md:mb-32">
+      <div className="pb-20 md:pb-32 pt-12 md:pt-20 px-4 md:px-8 max-w-[95vw] mx-auto relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {/* Brand/Info Column */}
           <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
             <span className="main-font text-3xl text-white tracking-tight">NAZTRO</span>
@@ -103,7 +116,7 @@ export function Footer() {
         </div>
 
         {/* Large logo */}
-        <div className="border-t border-white/5 pt-12 md:pt-20 flex flex-col items-center">
+        <div className="pt-12 md:pt-20 flex flex-col items-center">
           <div className="hero-font text-[clamp(4rem,18vw,16rem)] text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent leading-none select-none text-center w-full">
             NAZTRO
           </div>

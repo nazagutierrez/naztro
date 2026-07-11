@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useEffect, useState } from "react";
 
 const STEPS = [
@@ -75,6 +76,215 @@ const STEPS = [
   },
 ];
 
+// ─── SVG de Línea Serpiente ──────────────────────────────────────────────────
+// Se renderiza como un overlay sobre la grilla. La ruta conecta el centro real
+// de cada icono (usando data-snake-anchor). El stroke-dashoffset se anima
+// desde totalLength a 0 a medida que el usuario hace scroll por la sección.
+
+function SnakeLine({ gridRef }: { gridRef: React.RefObject<HTMLDivElement | null> }) {
+  const pathRef = useRef<SVGPathElement>(null);
+  const glowRef = useRef<SVGPathElement>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [dims, setDims] = useState({ w: 0, h: 0 });
+  const [pathD, setPathD] = useState("");
+
+  // Medimos la grilla, encontramos el <section> padre y construimos la ruta.
+  // Usamos un doble requestAnimationFrame para garantizar que leemos el layout
+  // DESPUÉS de que el navegador pinte la pantalla (evita leer valores viejos
+  // si las fuentes o imágenes mueven el layout en la carga inicial).
+  useEffect(() => {
+    let rafId: number;
+
+    const measure = () => {
+      // Doble rAF: el primero programa, el segundo se ejecuta post-paint
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (!gridRef.current) return;
+          const w = gridRef.current.offsetWidth;
+          const h = gridRef.current.offsetHeight;
+          setDims({ w, h });
+
+          let el: HTMLElement | null = gridRef.current;
+          while (el && el.tagName !== "SECTION") el = el.parentElement;
+          sectionRef.current = el;
+
+          // Medimos las posiciones reales de los iconos relativas a la grilla.
+          // Usamos offsetLeft/offsetTop en lugar de getBoundingClientRect() porque
+          // las tarjetas tienen un transform: translateY(30px) antes de ser visibles.
+          // ¡offsetTop ignora los transforms y nos da la posición final de descanso!
+          const anchors = gridRef.current.querySelectorAll("[data-snake-anchor]");
+          if (anchors.length < 6) return;
+          
+          const pts = Array.from(anchors).map((el) => {
+            let current = el as HTMLElement;
+            let x = 0;
+            let y = 0;
+            const iconW = current.offsetWidth;
+            const iconH = current.offsetHeight;
+            
+            while (current && current !== gridRef.current) {
+              x += current.offsetLeft;
+              y += current.offsetTop;
+              current = current.offsetParent as HTMLElement;
+            }
+            
+            return {
+              x: x + iconW / 2,
+              y: y + iconH / 2,
+            };
+          });
+
+          const isMobile = Math.abs(pts[0].y - pts[1].y) > 10;
+
+          let d = "";
+          if (isMobile) {
+            // Línea recta vertical que pasa por el centro de todos los iconos.
+            // Sumamos 0.1px en X abajo para evitar que la línea tenga un bounding-box
+            // con ancho 0, ¡lo cual haría desaparecer los gradientes/filtros SVG!
+            const x0 = pts[0].x;
+            d = `M ${x0} -40 L ${x0 + 0.1} ${h + 40}`;
+          } else {
+            // iconos: [0]=01 [1]=02 [2]=03 [3]=04 [4]=05 [5]=06
+            // Ruta: entra arriba → col 1 → derecha por fila 1 → pasa la tarjeta 3 (rx) → baja → izquierda por fila 2 → col 1 → sale abajo
+            const x0 = pts[0].x;
+            const y0 = pts[0].y;
+            const y1 = pts[3].y;
+            
+            const rx = w + 30; // 30px más allá del borde derecho
+            const lx = -60; // 60px más allá del borde izquierdo (curvas más a la izquierda)
+            const cr = 22; // Radio de las curvas
+
+            d = [
+              `M ${lx} ${-80}`,
+              `L ${lx} ${y0 - cr}`,
+              `Q ${lx} ${y0} ${lx + cr} ${y0}`,
+              `L ${rx - cr} ${y0}`,
+              `Q ${rx} ${y0} ${rx} ${y0 + cr}`,
+              `L ${rx} ${y1 - cr}`,
+              `Q ${rx} ${y1} ${rx - cr} ${y1}`,
+              `L ${lx + cr} ${y1}`,
+              `Q ${lx} ${y1} ${lx} ${y1 + cr}`,
+              `L ${lx} ${h + 40}`,
+            ].join(" ");
+          }
+          setPathD(d);
+        });
+      });
+    };
+
+    measure();
+
+    // Volvemos a medir tras cargar fuentes (principal causa de saltos de layout)
+    document.fonts.ready.then(measure);
+
+    // Medición de seguridad extra en el load de la ventana
+    window.addEventListener("load", measure);
+    
+    // Timers a prueba de balas para quirks de hidratación o CSS-in-JS
+    const t1 = setTimeout(measure, 100);
+    const t2 = setTimeout(measure, 500);
+    const t3 = setTimeout(measure, 1000);
+
+    const ro = new ResizeObserver(measure);
+    if (gridRef.current) ro.observe(gridRef.current);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      ro.disconnect();
+      window.removeEventListener("load", measure);
+    };
+  }, [gridRef]);
+
+
+  // Dashoffset basado en el scroll — fuertemente atado al scroll de la grilla
+  useEffect(() => {
+    const path = pathRef.current;
+    const glow = glowRef.current;
+    if (!path || !pathD) return;
+
+    const totalLength = path.getTotalLength();
+    [path, glow].forEach((el) => {
+      if (!el) return;
+      el.style.strokeDasharray = `${totalLength}`;
+      el.style.strokeDashoffset = `${totalLength}`;
+    });
+
+    const onScroll = () => {
+      if (!gridRef.current) return;
+      const rect = gridRef.current.getBoundingClientRect();
+      const wH = window.innerHeight;
+      
+      // Arranca exacto cuando la GRILLA (no el <section>) llega al 70% de la pantalla.
+      // Esto garantiza que la línea no se dibuje hasta que el primer icono sea visible.
+      const progress = Math.min(1, Math.max(0, (wH * 0.7 - rect.top) / rect.height));
+      const offset = `${totalLength * (1 - progress)}`;
+      path.style.strokeDashoffset = offset;
+      if (glow) glow.style.strokeDashoffset = offset;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathD, gridRef]);
+
+  if (dims.w === 0 || !pathD) return null;
+
+  return (
+    <svg
+      aria-hidden="true"
+      className="absolute inset-0 pointer-events-none"
+      style={{ width: dims.w, height: dims.h, overflow: "visible", zIndex: 0 }}
+      viewBox={`0 0 ${dims.w} ${dims.h}`}
+    >
+      <defs>
+        <linearGradient id="snakeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0.6" />
+        </linearGradient>
+        <filter id="snakeGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      {/* Ghost track */}
+      <path d={pathD} fill="none" stroke="rgba(14,165,233,0.07)" strokeWidth={1.5} strokeLinecap="round" />
+
+      {/* Glow layer */}
+      <path
+        ref={glowRef}
+        d={pathD}
+        fill="none"
+        stroke="#38bdf8"
+        strokeWidth={5}
+        strokeLinecap="round"
+        filter="url(#snakeGlow)"
+        style={{ opacity: 0.35, transition: "stroke-dashoffset 0.04s linear" }}
+      />
+
+      {/* Main crisp line */}
+      <path
+        ref={pathRef}
+        d={pathD}
+        fill="none"
+        stroke="url(#snakeGrad)"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        style={{ transition: "stroke-dashoffset 0.04s linear" }}
+      />
+    </svg>
+  );
+}
+
+// ─── Step Card ───────────────────────────────────────────────────────────────
+
 function StepCard({
   step,
   index,
@@ -111,10 +321,11 @@ function StepCard({
       }}
     >
       {/* Icon & Connectors Area */}
-      <div className="relative flex-shrink-0 w-14 h-14 lg:w-full flex items-center">
-        
-        {/* Circle Icon */}
+      <div className="relative flex-shrink-0 w-14 h-14 lg:w-full flex justify-center items-center">
+
+        {/* Circle Icon — data-snake-anchor lets SnakeLine measure its center */}
         <div
+          data-snake-anchor="true"
           className="relative w-14 h-14 rounded-full border border-sky-500/30 bg-[#0a0f1a]/80 backdrop-blur-sm
             flex items-center justify-center text-sky-400
             group-hover:border-sky-400 group-hover:bg-sky-500/10 group-hover:shadow-[0_0_30px_-5px_rgba(14,165,233,0.3)]
@@ -125,31 +336,6 @@ function StepCard({
           </span>
         </div>
 
-        {/* MOBILE: Vertical connector line (Downwards) */}
-        {!isLast && (
-          <div 
-            className="lg:hidden absolute top-14 left-7 w-px -translate-x-1/2 bg-sky-500/20 z-0 overflow-hidden"
-            style={{ height: 'calc(100% - 0.5rem)' }}
-          >
-            <div 
-              className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-transparent via-sky-400 to-transparent"
-              style={{ animation: visible ? "stepDotFlowDown 2s ease-in-out infinite" : "none" }}
-            />
-          </div>
-        )}
-
-        {/* DESKTOP: Horizontal connector line (Rightwards) */}
-        {!isLastInLgRow && (
-          <div 
-            className="hidden lg:block absolute top-7 left-14 h-px -translate-y-1/2 bg-sky-500/20 z-0 overflow-hidden"
-            style={{ width: 'calc(100% - 0.5rem)' }}
-          >
-            <div 
-              className="absolute top-0 left-0 h-full w-1/3 bg-gradient-to-r from-transparent via-sky-400 to-transparent"
-              style={{ animation: visible ? "stepDotFlowRight 2s ease-in-out infinite" : "none" }}
-            />
-          </div>
-        )}
       </div>
 
       {/* Content */}
@@ -169,9 +355,12 @@ function StepCard({
   );
 }
 
+// ─── Section ─────────────────────────────────────────────────────────────────
+
 export function HowWeWork() {
   const [titleVisible, setTitleVisible] = useState(false);
   const titleRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -184,28 +373,12 @@ export function HowWeWork() {
 
   return (
     <section className="w-full py-24 md:py-32 bg-background relative overflow-hidden">
-      
-      {/* Keyframe animations for the connector glowing dots */}
-      <style>{`
-        @keyframes stepDotFlowDown {
-          0% { top: -30%; opacity: 0; }
-          20% { opacity: 1; }
-          80% { opacity: 1; }
-          100% { top: 100%; opacity: 0; }
-        }
-        @keyframes stepDotFlowRight {
-          0% { left: -30%; opacity: 0; }
-          20% { opacity: 1; }
-          80% { opacity: 1; }
-          100% { left: 100%; opacity: 0; }
-        }
-      `}</style>
 
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12 xl:px-20 relative z-10">
-        
+
         {/* Header */}
         <div
           ref={titleRef}
@@ -234,7 +407,13 @@ export function HowWeWork() {
 
         {/* Steps Grid */}
         <div className="w-full relative">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-12 lg:gap-y-20 gap-x-12">
+          {/* Snake line overlay (desktop only) */}
+          <SnakeLine gridRef={gridRef} />
+
+          <div
+            ref={gridRef}
+            className="grid grid-cols-1 lg:grid-cols-3 gap-y-12 lg:gap-y-20 gap-x-12 relative z-10"
+          >
             {STEPS.map((step, index) => (
               <StepCard
                 key={step.number}

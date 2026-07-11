@@ -6,6 +6,7 @@ import MailSvg from "./svg/MailSvg";
 import WhatsappSvg from "./svg/WhatsappSvg";
 import CallSvg from "./svg/CallSvg";
 import { gsap } from "gsap";
+import HeroButton from "./ui/HeroButton";
 
 const Dithering = lazy(() =>
   import("@paper-design/shaders-react").then((mod) => ({
@@ -205,10 +206,7 @@ export function CTASection() {
             <MenuBar className="mb-4 text-start" items={menuItems} />
 
             {/* Button */}
-            <button className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-primary px-12 text-base font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:scale-105 active:scale-95 hover:ring-4 hover:ring-primary/20">
-              <span className="relative z-10">Nuestro trabajo</span>
-              <ArrowRight className="h-5 w-5 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
+            <HeroButton href="#projects">Nuestro trabajo</HeroButton>
           </div>
         </div>
       </div>

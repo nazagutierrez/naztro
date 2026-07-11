@@ -195,12 +195,9 @@ export function WhyUs() {
             transition: "opacity 0.7s ease, transform 0.7s ease",
           }}
         >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/20 bg-sky-500/5 px-4 py-1.5 text-xs font-mono text-sky-400 tracking-widest uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
-              Por qué elegirnos
-            </div>
-            <div className="h-px flex-1 bg-white/5" />
+          <div className="inline-flex mb-10 items-center gap-2 rounded-full border border-sky-500/20 bg-sky-500/5 px-4 py-1.5 text-xs font-mono text-sky-400 tracking-widest uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+            Por qué elegirnos
           </div>
 
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
