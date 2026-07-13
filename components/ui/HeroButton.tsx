@@ -1,5 +1,3 @@
-import "./hero-button.css"
-
 export default function HeroButton({
   href,
   children,
@@ -8,8 +6,9 @@ export default function HeroButton({
   children: React.ReactNode;
 }) {
   return (
-    <a className="button2" href={href}>{children}</a>
-
+    <a className="px-6 py-3 main-font uppercase  text-sm transition-all border border-sky-700 rounded-md hover:bg-black/80 duration-500 backdrop-blur!" href={href}>
+      {children}
+    </a>
   );
 }
 

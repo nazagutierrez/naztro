@@ -37,7 +37,26 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     // Disable lag smoothing for GSAP
     gsap.ticker.lagSmoothing(0);
 
+    // Manejar clics en enlaces con anclas (#) para que Lenis haga el scroll suave
+    const handleClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a');
+      if (!anchor) return;
+      
+      const href = anchor.getAttribute('href');
+      if (href && href.startsWith('#') && href.length > 1) {
+        e.preventDefault();
+        lenis.scrollTo(href, { 
+          offset: 0,
+          duration: 1.5,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
+      }
+    };
+
+    document.documentElement.addEventListener('click', handleClick);
+
     return () => {
+      document.documentElement.removeEventListener('click', handleClick);
       lenis.destroy();
       gsap.ticker.remove((time) => {
         lenis.raf(time * 1000);

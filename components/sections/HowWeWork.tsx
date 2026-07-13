@@ -375,7 +375,7 @@ export function HowWeWork() {
     <section className="w-full py-24 md:py-32 bg-background relative overflow-hidden">
 
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
 
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12 xl:px-20 relative z-10">
 

@@ -79,7 +79,7 @@ export function AboutSection() {
               {/* Contenedor del logo interactivo */}
               <div className="relative z-10 transform transition-transform duration-1000 ease-out group-hover/card:scale-105">
                 {/* Glow detrás del logo */}
-                <div className="absolute inset-0 bg-sky-500/20 blur-[100px] rounded-full scale-150 opacity-50 group-hover/card:opacity-100 transition-opacity duration-700" />
+                <div className="absolute inset-0 rounded-full scale-150 opacity-50 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.2) 0%, transparent 70%)' }} />
                 {/* <AsciiLogo /> */}
               </div>
             </div>

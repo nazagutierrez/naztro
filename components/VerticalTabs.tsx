@@ -2,12 +2,14 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import ChevronSvg from "./svg/ChevronSvg";
 
 // Change Here
 const SERVICES = [
   {
     id: "01",
     title: "Piso Fuerte",
+    href: "www.pisofuerte.com.ar",
     description:
       "Creating beautiful, functional, and user-centric digital experiences.",
     image:
@@ -16,6 +18,7 @@ const SERVICES = [
   {
     id: "02",
     title: "Nordicaps",
+    href: "nordicaps.vercel.app",
     description: "Building high-performance, animated websites with Framer.",
     image:
       "/nordicaps-blue.png",
@@ -23,6 +26,7 @@ const SERVICES = [
   {
     id: "03",
     title: "Dymo",
+    href: "dymo.tpeoficial.com",
     description:
       "Defining your brand's visual identity and voice for a lasting impression.",
     image:
@@ -135,7 +139,11 @@ export function VerticalTabs() {
                       <span
                         className={`text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight transition-colors duration-500 ${isActive ? "text-neutral-300" : "" }`}
                       >
-                        {service.title}
+                        {service.title} 
+                        <span className="text-neutral-300 text-xl opacity-40"> - </span>
+                        <a href={service.href} target="_blank" rel="noopener noreferrer" className="text-xl mt-1 tabular-nums opacity-50 hover:underline decoration-1 underline-offset-2">
+                         {service.href}
+                        </a>
                       </span>
 
                       <motion.div
@@ -202,20 +210,20 @@ export function VerticalTabs() {
                       e.stopPropagation();
                       handlePrev();
                     }}
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-border/50 flex items-center justify-center text-neutral-300 hover:bg-background transition-all active:scale-90 cursor-pointer"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-sky-600/40 flex items-center justify-center text-neutral-300 hover:border-sky-600/70 transition-all active:scale-90 cursor-pointer"
                     aria-label="Previous"
                   >
-                    {"<"}
+                    <ChevronSvg className="rotate-180 text-2xl" />
                   </button>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       handleNext();
                     }}
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-border/50 flex items-center justify-center text-neutral-300 hover:bg-background transition-all active:scale-90 cursor-pointer"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-sky-600/40 flex items-center justify-center text-neutral-300 hover:border-sky-600/70 transition-all active:scale-90 cursor-pointer"
                     aria-label="Next"
                   >
-                    {">"}
+                    <ChevronSvg className="text-2xl" />
                   </button>
                 </div>
               </div>

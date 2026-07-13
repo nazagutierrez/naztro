@@ -35,7 +35,7 @@ export function Testimonials() {
     <section className="w-full py-32 bg-background relative overflow-hidden flex flex-col items-center">
       
       {/* Luces de fondo ambientales */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-sky-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
 
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto z-10 relative mb-16 text-center">
         <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.1] flex flex-col items-center">
@@ -60,7 +60,7 @@ export function Testimonials() {
               </div>
               
               {/* Glow interno (Top Left) */}
-              <div className="absolute top-0 left-0 w-32 h-32 bg-sky-500/10 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none" />
+              <div className="absolute top-0 left-0 w-32 h-32 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)' }} />
 
               <blockquote className="text-lg md:text-xl font-normal leading-relaxed text-white/80 relative z-10 mb-8 flex-grow">
                 {testimonial.quote}

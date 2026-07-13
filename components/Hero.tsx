@@ -203,10 +203,10 @@ export function CTASection() {
               digital, mejorando tiempos, organización y ventas.
             </p>
 
-            <MenuBar className="mb-4 text-start" items={menuItems} />
+            <MenuBar className="mb-10 text-start" items={menuItems} />
 
             {/* Button */}
-            <HeroButton href="#projects">Nuestro trabajo</HeroButton>
+            <HeroButton href="#trabajos">Nuestro trabajo</HeroButton>
           </div>
         </div>
       </div>

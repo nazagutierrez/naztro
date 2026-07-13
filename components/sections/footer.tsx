@@ -25,7 +25,7 @@ export function Footer() {
     <footer className="w-full bg-[url('/buried.png')] bg-[#030712] border-t border-white/5 relative overflow-hidden">
       
       {/* Luces sutiles */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(14,165,233,0.1) 0%, transparent 70%)' }} />
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[85%] w-[200vw] md:w-[120vw] lg:w-[100vw] max-w-[2000px] aspect-square rounded-full border-t border-sky-400/50 bg-sky-400/5 shadow-[0_-20px_80px_rgba(56,189,248,0.1)] pointer-events-none z-0">
         <motion.img 

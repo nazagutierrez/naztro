@@ -5,7 +5,7 @@ export function CTA() {
     <section className="w-full min-h-screen py-32 bg-background relative overflow-hidden flex flex-col items-center justify-center">
       
       {/* Glow central intenso */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%)' }} />
 
       <div className="w-full max-w-4xl px-4 mx-auto z-10 relative text-center">
         

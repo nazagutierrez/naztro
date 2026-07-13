@@ -38,7 +38,7 @@ export function FAQ() {
     <section className="w-full py-32 bg-background relative overflow-hidden flex flex-col items-center">
       
       {/* Background Glow */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
 
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto z-10 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">

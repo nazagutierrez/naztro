@@ -59,10 +59,23 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: n
       className="group relative p-8 md:p-10 rounded-[2rem] border border-white/5 bg-[#0a0f1a]/40 overflow-hidden transition-all duration-500 hover:bg-[#0a0f1a]/80 hover:border-sky-500/30 hover:shadow-[0_0_80px_-15px_rgba(14,165,233,0.15)] flex flex-col justify-between min-h-[320px]"
     >
       {/* Corner Glow */}
-      <div className="absolute -top-32 -right-32 w-64 h-64 bg-sky-500/10 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full pointer-events-none" />
+      <div className="absolute -top-32 -right-32 w-64 h-64 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)' }} />
       
       {/* Bottom gradient line */}
       <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sky-500/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out" />
+
+      {/* Hover Background Logo */}
+      <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
+        <img
+          src="/naztro.svg"
+          alt=""
+          className={`absolute w-[85%] h-[85%] object-contain opacity-0 transition-all duration-700 ease-out
+            ${index % 2 === 0 ? 'translate-x-1/2' : '-translate-x-1/2'}
+            ${index < 2 ? 'translate-y-1/2' : '-translate-y-1/2'}
+            group-hover:opacity-[0.1] group-hover:translate-x-0 group-hover:translate-y-0
+          `}
+        />
+      </div>
 
       <div className="relative z-10 flex-1 flex flex-col">
         <div className="flex items-start justify-between mb-8">
@@ -107,8 +120,8 @@ export function ServicesSection() {
     <section className="w-full relative bg-background overflow-hidden py-24 md:py-32">
       
       {/* Ambient background glows */}
-      <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-sky-500/5 blur-[150px] rounded-full pointer-events-none -translate-x-1/2" />
-      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-violet-500/5 blur-[150px] rounded-full pointer-events-none translate-x-1/3" />
+      <div className="absolute top-1/4 left-0 w-[600px] h-[600px] rounded-full pointer-events-none -translate-x-1/2" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] rounded-full pointer-events-none translate-x-1/3" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)' }} />
 
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         
@@ -147,7 +160,7 @@ export function ServicesSection() {
           {/* AsciiLogo Showcase Container */}
           <div className="lg:w-5/12 min-h-[350px] lg:min-h-0 rounded-[2rem] relative group flex flex-col items-center justify-center">
             {/* Background Glow */}
-            <div className="absolute  bg-sky-500/20 blur-3xl w-60 h-60 rounded-full scale-150 opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+            <div className="absolute w-60 h-60 rounded-full scale-150 opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.25) 0%, transparent 70%)' }} />
             
             {/* Interaction Hint */}
             <div className="absolute top-18 right-8 font-mono text-[10px] text-sky-400/70 uppercase tracking-widest flex items-center gap-2">

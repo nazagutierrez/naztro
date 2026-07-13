@@ -9,21 +9,42 @@ import AboutSection from "@/components/AboutSection"
 import ServicesSection from "@/components/ServicesSection"
 import { WhyUs } from "@/components/sections/WhyUs"
 import { HowWeWork } from "@/components/sections/HowWeWork"
+import { Navbar } from "@/components/Navbar"
+
 export default function App() {
   return (
-    <SmoothScroll>
-      <CTASection />
-      <main>
-        <VerticalTabs />
-        <ServicesSection />
-        <WhyUs />
-        <HowWeWork />
-        <AboutSection />
-        <Testimonials />
-        <FAQ />
-        <CTA />
-      </main>
-      <Footer />
-    </SmoothScroll>
+    <>
+      <Navbar />
+      <SmoothScroll>
+        <CTASection />
+        <main>
+          <section id="trabajos">
+            <VerticalTabs />
+          </section>
+          <section id="servicios">
+            <ServicesSection />
+          </section>
+          <section id="why-us">
+            <WhyUs />
+          </section>
+          <section id="proceso">
+            <HowWeWork />
+          </section>
+          <section id="nosotros">
+            <AboutSection />
+          </section>
+          {/* <section id="testimonios">
+            <Testimonials />
+          </section> */}
+          <section id="faq">
+            <FAQ />
+          </section>
+          <section id="contacto">
+            <CTA />
+          </section>
+        </main>
+        <Footer />
+      </SmoothScroll>
+    </>
   )
 }
