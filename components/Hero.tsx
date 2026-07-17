@@ -140,7 +140,7 @@ export function CTASection() {
   }, []);
 
   return (
-    <section className="py-12 w-full mb-10 flex justify-center items-center px-4 md:px-6">
+    <section className="py-12 w-full mb-6 md:mb-10 flex justify-center items-center px-4 md:px-6">
       {/* ========= */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
         <div className="w-full h-screen" id="logo-mask"></div>
@@ -189,21 +189,21 @@ export function CTASection() {
             </div>
 
             {/* Headline */}
-            <h2 className="font-serif flex flex-col gap-y-2 text-6xl md:text-8xl lg:text-9xl font-medium tracking-tight text-foreground mb-10 leading-[1.05]">
+            <h2 className="font-serif flex flex-col gap-y-2 text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-medium tracking-tight text-foreground mb-8 md:mb-10 leading-[1.05]">
               <span className="main-font">NAZTRO </span>
-              <span className="text-4xl">
+              <span className="text-3xl md:text-4xl">
                 digitalizamos tu{" "}
-                <span className="hero-font text-4xl">negocio.</span>
+                <span className="hero-font text-3xl md:text-4xl">negocio.</span>
               </span>
             </h2>
 
             {/* Description */}
-            <p className="text-white text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+            <p className="text-white text-base md:text-lg lg:text-xl max-w-2xl mb-8 md:mb-10 leading-relaxed">
               Desarrollamos soluciones web a medida para potenciar tu presencia
               digital, mejorando tiempos, organización y ventas.
             </p>
 
-            <MenuBar className="mb-10 text-start" items={menuItems} />
+            <MenuBar className="mb-8 md:mb-10 text-start" items={menuItems} />
 
             {/* Button */}
             <HeroButton href="#trabajos">Nuestro trabajo</HeroButton>

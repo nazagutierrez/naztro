@@ -33,9 +33,9 @@ export default function App() {
           <section id="nosotros">
             <AboutSection />
           </section>
-          {/* <section id="testimonios">
+          <section id="testimonios">
             <Testimonials />
-          </section> */}
+          </section>
           <section id="faq">
             <FAQ />
           </section>

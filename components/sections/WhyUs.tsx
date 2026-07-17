@@ -97,20 +97,30 @@ function DifferentiatorRow({
 
       {/* Row content */}
       <div
-        className="grid grid-cols-12 items-start gap-4 md:gap-8 py-7 md:py-9 cursor-default relative group"
+        className="flex flex-col md:grid md:grid-cols-12 items-start gap-3 md:gap-8 py-7 md:py-9 cursor-default relative group"
       >
-        {/* Number */}
-        <div className="col-span-2 md:col-span-1 pt-1">
+        {/* Number & Mobile Tag */}
+        <div className="flex w-full justify-between items-center md:items-start md:w-auto md:col-span-1 md:block pt-1">
           <span
             className="font-mono text-xs md:text-sm tracking-widest transition-colors duration-300"
             style={{ color: hovered ? "rgba(56,189,248,0.9)" : "rgba(255,255,255,0.2)" }}
           >
             /{item.number}
           </span>
+          <span
+            className="md:hidden font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full border whitespace-nowrap transition-all duration-300"
+            style={{
+              borderColor: hovered ? "rgba(56,189,248,0.4)" : "rgba(255,255,255,0.16)",
+              color: hovered ? "rgba(56,189,248,0.9)" : "rgba(255,255,255,0.5)",
+              backgroundColor: hovered ? "rgba(56,189,248,0.06)" : "transparent",
+            }}
+          >
+            {item.tag}
+          </span>
         </div>
 
         {/* Title + description */}
-        <div className="col-span-8 md:col-span-9">
+        <div className="w-full md:col-span-9">
           {/* Title */}
           <h3
             className="font-sans mb-2 font-medium tracking-tight leading-none transition-colors duration-400"
@@ -148,7 +158,7 @@ function DifferentiatorRow({
         </div>
 
         {/* Tag */}
-        <div className="col-span-2 flex justify-end items-start pt-1">
+        <div className="hidden md:flex md:col-span-2 justify-end items-start pt-1">
           <span
             className="font-mono md:text-xs uppercase tracking-widest px-2.5 py-1 rounded-full border whitespace-nowrap transition-all duration-300"
             style={{
@@ -179,7 +189,7 @@ export function WhyUs() {
   }, []);
 
   return (
-    <section className="w-full py-24 md:py-32 bg-background relative overflow-hidden">
+    <section className="w-full py-16 md:py-32 bg-background relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
 
@@ -211,11 +221,8 @@ export function WhyUs() {
           </div>
         </div>
 
-        {/* Differentiators — editorial list.
-             md:min-h-[850px] le da suficiente altura al contenedor en desktop
-             para que cuando una row se abra, no empuje el contenido de abajo.
-             En móvil fluye naturalmente. */}
-        <div className="md:h-screen">
+        {/* Differentiators — editorial list. */}
+        <div className="relative">
           {DIFFERENTIATORS.map((item, i) => (
             <DifferentiatorRow key={item.number} item={item} index={i} />
           ))}

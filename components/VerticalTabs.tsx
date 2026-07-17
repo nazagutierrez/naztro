@@ -86,13 +86,13 @@ export function VerticalTabs() {
   };
 
   return (
-    <section className="w-full bg-transparent h-screen flex items-center [overflow-anchor:none]">
+    <section className="w-full bg-transparent min-h-screen h-auto flex items-center py-16 lg:py-0 [overflow-anchor:none]">
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Content */}
-          <div className="lg:col-span-5 flex flex-col justify-start order-2 lg:order-1 pt-4 h-[600px]">
+          <div className="lg:col-span-5 flex flex-col justify-start order-2 lg:order-1 pt-4 lg:pt-0 h-auto lg:h-[600px]">
             <div className="space-y-1 mb-12">
-              <h2 className="main-font text-balance text-6xl! font-medium md:text-4xl lg:text-5xl text-neutral-300">
+              <h2 className="main-font text-balance text-5xl font-medium md:text-4xl lg:text-5xl text-neutral-300">
                 NUESTROS TRABAJOS
               </h2>
               <span className="text-[10px] font-medium text-muted-neutral-300 uppercase tracking-[0.3em] block ml-0.5">

@@ -35,7 +35,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full py-32 bg-background relative overflow-hidden flex flex-col items-center">
+    <section className="w-full py-16 md:py-32 bg-background relative overflow-hidden flex flex-col items-center">
       
       {/* Background Glow */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
@@ -53,7 +53,7 @@ export function FAQ() {
               Resolvemos tus dudas
             </div>
             
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1] flex flex-col mb-6">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1] flex flex-col mb-6">
               <span className="main-font">PREGUNTAS </span>
               <span className="hero-font text-sky-500">FRECUENTES.</span>
             </h2>

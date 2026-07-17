@@ -117,7 +117,7 @@ export function ServicesSection() {
   }, []);
 
   return (
-    <section className="w-full relative bg-background overflow-hidden py-24 md:py-32">
+    <section className="w-full relative bg-background overflow-hidden py-16 md:py-32">
       
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-0 w-[600px] h-[600px] rounded-full pointer-events-none -translate-x-1/2" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
@@ -145,7 +145,7 @@ export function ServicesSection() {
                 Nuestras áreas
               </div>
               
-              <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.05] flex flex-col mb-6">
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.05] flex flex-col mb-6">
                 <span className="main-font">LO QUE</span>
                 <span className="hero-font pb-2">hacemos.</span>
               </h2>
