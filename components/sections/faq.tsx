@@ -70,29 +70,36 @@ export function FAQ() {
               return (
                 <div
                   key={index}
-                  className={`border transition-all duration-300 rounded-[16px] overflow-hidden ${
+                  className={`relative bg-[#0a0f1a]/60 overflow-hidden transition-all duration-500 rounded-2xl ${
                     isOpen 
-                      ? "border-sky-500/40 bg-[#0f172a]/80 shadow-[0_0_30px_-5px_rgba(14,165,233,0.15)]" 
-                      : "border-white/5 bg-[#0a0f1a]/50 hover:bg-[#0a0f1a]/80 hover:border-white/10"
+                      ? "border border-sky-500/30 shadow-[0_0_40px_-10px_rgba(14,165,233,0.15)]" 
+                      : "border border-white/5 hover:border-white/10"
                   }`}
                 >
+                  {/* Decorative glowing gradient for active item */}
+                  {isOpen && (
+                    <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 via-transparent to-transparent pointer-events-none" />
+                  )}
+                  
                   <button
-                    className="w-full px-6 py-6 flex items-center justify-between text-left group"
+                    className="relative cursor-pointer w-full px-6 py-6 md:px-8 flex items-center justify-between text-left group z-10"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     aria-expanded={isOpen}
                   >
-                    <span className={`text-lg md:text-xl font-medium tracking-tight transition-colors duration-300 ${isOpen ? "text-sky-400" : "text-white group-hover:text-sky-300"}`}>
+                    <span className={`text-lg md:text-xl tracking-wide transition-colors duration-300 ${isOpen ? "text-sky-200" : "text-white/90 group-hover:text-white"}`}>
                       {faq.question}
                     </span>
                     <span
-                      className={`flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center text-lg transition-all duration-300 ${
+                      className={`flex-shrink-0 ml-6 flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border transition-all duration-300 ${
                         isOpen 
-                          ? "border-sky-500 bg-sky-500/10 text-sky-400 rotate-180" 
-                          : "border-white/20 text-white/50 group-hover:border-sky-500/50 group-hover:text-sky-400"
+                          ? "border-sky-500/50 text-sky-400 rotate-45 shadow-[0_0_15px_-3px_rgba(14,165,233,0.3)]" 
+                          : "border-white/10 text-white/50 group-hover:border-white/20 group-hover:text-white/80"
                       }`}
                       aria-hidden="true"
                     >
-                      {isOpen ? "−" : "+"}
+                      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300">
+                        <path d="M7.5 1V14M1 7.5H14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
                     </span>
                   </button>
 
@@ -102,12 +109,15 @@ export function FAQ() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
+                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                        className="z-10 relative"
                       >
-                        <p className="text-sm md:text-base text-white/60 leading-relaxed px-6 pb-6">
-                          {faq.answer}
-                        </p>
+                        <div className="px-6 md:px-8 pb-8 pt-2">
+                          <div className="w-62 absolute -top-2.5 h-px bg-gradient-to-r from-sky-500 to-transparent mb-4 rounded-full opacity-50" />
+                          <p className="text-base text-white/70 leading-relaxed font-light">
+                            {faq.answer}
+                          </p>
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
