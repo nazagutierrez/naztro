@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 
 const navigation = {
   work: [
@@ -23,27 +20,34 @@ const navigation = {
 export function Footer() {
   return (
     <footer className="w-full bg-[url('/buried.png')] bg-[#030712] border-t border-white/5 relative overflow-hidden">
+      <style>{`
+        @keyframes starPulse {
+          0%, 50%, 100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.8;
+            filter: brightness(1) drop-shadow(0 0 10px rgba(56,189,248,0.1));
+          }
+          75% {
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 1;
+            filter: brightness(1.5) drop-shadow(0 0 20px rgba(56,189,248,0.3));
+          }
+        }
+        .star-pulse-animated {
+          animation: starPulse 4s ease-in-out infinite;
+          transform-origin: center center;
+        }
+      `}</style>
       
       {/* Luces sutiles */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(14,165,233,0.1) 0%, transparent 70%)' }} />
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[85%] w-[200vw] md:w-[120vw] lg:w-[100vw] max-w-[2000px] aspect-square rounded-full border-t border-sky-400/50 bg-sky-400/5 shadow-[0_-20px_80px_rgba(56,189,248,0.1)] pointer-events-none z-0">
-        <motion.img 
+        <img 
           src="/star-light.webp" 
           alt="Star Flare" 
-          className="absolute top-0 left-1/2 w-[300px] md:w-[500px] mix-blend-screen pointer-events-none"
-          initial={{ x: "-50%", y: "-50%", opacity: 0.8 }}
-          animate={{
-            scale: [1, 1, 1.2, 1],
-            opacity: [0.8, 0.8, 1, 0.8],
-            filter: ["brightness(1)", "brightness(1)", "brightness(1.5)", "brightness(1)"]
-          }}
-          transition={{
-            duration: 4,
-            times: [0, 0.5, 0.75, 1],
-            ease: "easeInOut",
-            repeat: Infinity
-          }}
+          className="absolute top-0 left-1/2 w-[300px] md:w-[500px] mix-blend-screen pointer-events-none star-pulse-animated"
+          style={{ transform: "translate(-50%, -50%)" }}
         />
       </div>
 

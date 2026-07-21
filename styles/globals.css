@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-serif: "IBM Plex Serif", serif;
+}
+
 #logo-mask {
   --size: 0px;
 
