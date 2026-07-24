@@ -31,9 +31,11 @@ const SERVICES = [
 
 function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: number }) {
   const [visible, setVisible] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Observer for fade in animation
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -43,7 +45,30 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: n
       { threshold: 0.15 }
     );
     if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+
+    // Observer for mobile "scroll-hover" effect
+    const scrollObserver = new IntersectionObserver(
+      ([entry]) => {
+        // Only trigger on mobile (roughly < 768px)
+        if (window.innerWidth < 768) {
+          setIsActive(entry.isIntersecting);
+        }
+      },
+      { rootMargin: "-35% 0px -35% 0px", threshold: 0 }
+    );
+    if (ref.current) scrollObserver.observe(ref.current);
+
+    // Handle resize to reset active state on desktop
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setIsActive(false);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      observer.disconnect();
+      scrollObserver.disconnect();
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const Icon = service.icon;
@@ -56,46 +81,53 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: n
         transform: visible ? "translateY(0)" : "translateY(30px)",
         transition: `opacity 0.6s ease ${index * 100}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 100}ms`
       }}
-      className="group relative p-8 md:p-10 rounded-[2rem] border border-white/5 bg-[#0a0f1a]/40 overflow-hidden transition-all duration-500 hover:bg-[#0a0f1a]/80 hover:border-sky-500/30 hover:shadow-[0_0_80px_-15px_rgba(14,165,233,0.15)] flex flex-col justify-between min-h-[320px]"
+      className={`group relative p-8 md:p-10 rounded-[2rem] border overflow-hidden transition-all duration-500 flex flex-col justify-between md:min-h-[320px] ${
+        isActive 
+          ? "bg-[#0a0f1a]/80 border-sky-500/30 shadow-[0_0_80px_-15px_rgba(14,165,233,0.15)]" 
+          : "bg-[#0a0f1a]/40 border-white/5"
+      } md:hover:bg-[#0a0f1a]/80 md:hover:border-sky-500/30 md:hover:shadow-[0_0_80px_-15px_rgba(14,165,233,0.15)]`}
     >
       {/* Corner Glow */}
-      <div className="absolute -top-32 -right-32 w-64 h-64 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)' }} />
+      <div className={`absolute -top-32 -right-32 w-64 h-64 transition-opacity duration-700 rounded-full pointer-events-none ${isActive ? 'opacity-100' : 'opacity-0'} md:group-hover:opacity-100`} style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)' }} />
       
       {/* Bottom gradient line */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sky-500/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out" />
+      <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sky-500/50 to-transparent transition-transform duration-700 ease-out ${isActive ? 'scale-x-100' : 'scale-x-0'} md:group-hover:scale-x-100`} />
 
       {/* Hover Background Logo */}
       <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
         <img
           src="/naztro.svg"
           alt=""
-          className={`absolute w-[85%] h-[85%] object-contain opacity-0 transition-all duration-700 ease-out
-            ${index % 2 === 0 ? 'translate-x-1/2' : '-translate-x-1/2'}
-            ${index < 2 ? 'translate-y-1/2' : '-translate-y-1/2'}
-            group-hover:opacity-[0.1] group-hover:translate-x-0 group-hover:translate-y-0
+          className={`absolute w-[85%] h-[85%] object-contain transition-all duration-700 ease-out
+            ${isActive ? 'opacity-[0.1] translate-x-0 translate-y-0' : `opacity-0 ${index % 2 === 0 ? 'translate-x-1/2' : '-translate-x-1/2'} ${index < 2 ? 'translate-y-1/2' : '-translate-y-1/2'}`}
+            md:group-hover:opacity-[0.1] md:group-hover:translate-x-0 md:group-hover:translate-y-0
           `}
         />
       </div>
 
       <div className="relative z-10 flex-1 flex flex-col">
         <div className="flex items-start justify-between mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-[#030712]/80 border border-white/10 flex items-center justify-center text-white/70 group-hover:border-sky-500/50 group-hover:text-sky-400 transition-all shadow-lg">
+          <div className={`w-14 h-14 rounded-2xl bg-[#030712]/80 border flex items-center justify-center transition-all shadow-lg ${
+            isActive ? 'border-sky-500/50 text-sky-400' : 'border-white/10 text-white/70'
+          } md:group-hover:border-sky-500/50 md:group-hover:text-sky-400`}>
             <Icon strokeWidth={1.5} className="w-6 h-6" />
           </div>
-          <span className="font-mono text-3xl md:text-4xl font-light text-white/5 group-hover:text-sky-500/20 transition-colors duration-500 select-none">
+          <span className={`font-mono text-3xl md:text-4xl font-light transition-colors duration-500 select-none ${isActive ? 'text-sky-500/20' : 'text-white/5'} md:group-hover:text-sky-500/20`}>
             {service.id}
           </span>
         </div>
         
-        <h3 className="text-2xl font-medium text-white mb-4 group-hover:text-sky-300 transition-colors duration-300">
+        <h3 className={`text-2xl font-medium mb-4 transition-colors duration-300 ${isActive ? 'text-sky-300' : 'text-white'} md:group-hover:text-sky-300`}>
           {service.title}
         </h3>
         
-        <p className="text-white/50 text-sm md:text-base leading-relaxed group-hover:text-white/70 transition-colors duration-300 flex-1">
+        <p className={`text-sm md:text-base leading-relaxed transition-colors duration-300 flex-1 ${isActive ? 'text-white/70' : 'text-white/50'} md:group-hover:text-white/70`}>
           {service.description}
         </p>
 
-        <div className="mt-8 flex items-center text-sky-400 font-mono text-xs tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+        <div className={`mt-8 flex items-center text-sky-400 font-mono text-xs tracking-widest uppercase transition-all duration-500 ${
+          isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+        } md:group-hover:opacity-100 md:group-hover:translate-x-0`}>
           Descubrir más <ArrowRight className="w-4 h-4 ml-2" />
         </div>
       </div>
@@ -117,7 +149,7 @@ export function ServicesSection() {
   }, []);
 
   return (
-    <section className="w-full relative bg-background overflow-hidden py-24 md:py-32">
+    <section className="w-full relative bg-background py-16 md:py-32" style={{ overflowX: 'clip' }}>
       
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-0 w-[600px] h-[600px] rounded-full pointer-events-none -translate-x-1/2" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
@@ -126,12 +158,12 @@ export function ServicesSection() {
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         
         {/* Top Header Row: Title & AsciiLogo Showcase */}
-        <div className="flex flex-col lg:flex-row items-stretch gap-6 md:gap-8 mb-6 md:mb-8">
+        <div className="flex  flex-col lg:flex-row items-stretch gap-6 md:gap-8 mb-6 md:mb-8">
           
           {/* Title Area */}
           <div 
             ref={titleRef}
-            className="lg:w-7/12 rounded-[2rem] md:p-12 lg:p-16 flex flex-col justify-center relative overflow-hidden group"
+            className="lg:w-7/12 md:p-12 lg:p-16 flex flex-col justify-center relative group"
             style={{
               opacity: titleVisible ? 1 : 0,
               transform: titleVisible ? "translateY(0)" : "translateY(20px)",
@@ -145,7 +177,7 @@ export function ServicesSection() {
                 Nuestras áreas
               </div>
               
-              <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.05] flex flex-col mb-6">
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.05] flex flex-col mb-6">
                 <span className="main-font">LO QUE</span>
                 <span className="hero-font pb-2">hacemos.</span>
               </h2>
@@ -158,18 +190,18 @@ export function ServicesSection() {
           </div>
           
           {/* AsciiLogo Showcase Container */}
-          <div className="lg:w-5/12 min-h-[350px] lg:min-h-0 rounded-[2rem] relative group flex flex-col items-center justify-center">
+          <div className="lg:w-5/12 min-h-[350px] absolute -right-10 sm:right-0 -top-30 md:-top-4 lg:top-0 lg:min-h-0 rounded-[2rem] lg:relative group flex flex-col items-center justify-center">
             {/* Background Glow */}
             <div className="absolute w-60 h-60 rounded-full scale-150 opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.25) 0%, transparent 70%)' }} />
             
             {/* Interaction Hint */}
-            <div className="absolute top-18 right-8 font-mono text-[10px] text-sky-400/70 uppercase tracking-widest flex items-center gap-2">
+            <div className="absolute  top-18 right-8 font-mono text-[10px] text-sky-400/70 uppercase tracking-widest hidden md:flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-sky-400/70 animate-ping" />
               Interactua
             </div>
 
             {/* Logo */}
-            <div className="relative z-10 w-full h-full aspect-square transition-transform duration-700 ease-out group-hover:scale-105">
+            <div className="relative z-10 opacity-70 md:opacity-100 w-full max-h-120 aspect-square transition-transform duration-700 ease-out group-hover:scale-105">
                <AsciiLogo />
             </div>
           </div>

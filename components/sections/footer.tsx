@@ -1,3 +1,9 @@
+"use client";
+
+import { motion } from "framer-motion";
+import WhatsappSvg from "../svg/WhatsappSvg";
+import InstagramSvg from "../svg/InstagramSvg";
+import MailSvg from "../svg/MailSvg";
 
 const navigation = {
   work: [
@@ -52,17 +58,29 @@ export function Footer() {
       </div>
 
       <div className="pb-20 md:pb-32 pt-12 md:pt-20 px-4 md:px-8 max-w-[95vw] mx-auto relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {/* Brand/Info Column */}
-          <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
+          <div className="col-span-3 sm:col-span-3 md:col-span-1 flex flex-col gap-4">
             <span className="main-font text-3xl text-white tracking-tight">NAZTRO</span>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs mt-2">
               Transformamos problemas complejos en productos simples, estéticos y altamente funcionales.
             </p>
+            {/* Redes sociales - Mobile solo */}
+            <div className="flex sm:hidden items-center gap-4 mt-2">
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/10 transition-all">
+                <InstagramSvg className="w-5 h-5" />
+              </a>
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/10 transition-all">
+                <WhatsappSvg className="w-5 h-5" />
+              </a>
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/10 transition-all">
+                <MailSvg className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           {/* Work */}
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <h3 className="text-sm font-mono text-sky-400 uppercase tracking-widest mb-6">
               Navegación
             </h3>
@@ -100,7 +118,7 @@ export function Footer() {
           </div>
 
           {/* Social */}
-          <div>
+          <div className="hidden sm:block">
             <h3 className="text-sm font-mono text-sky-400 uppercase tracking-widest mb-6">
               Sociales
             </h3>
@@ -125,7 +143,7 @@ export function Footer() {
             NAZTRO
           </div>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mt-8 md:mt-12 w-full px-4">
-            <p className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-white/30">
+            <p className="text-[10px] hidden md:block md:text-xs font-mono uppercase tracking-widest text-white/30">
               Desarrollo Web & UI/UX
             </p>
             <p className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-white/30 text-center md:text-right">

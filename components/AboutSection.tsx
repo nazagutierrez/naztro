@@ -16,52 +16,48 @@ const TEAM = [
 
 export function AboutSection() {
   return (
-    <section className="w-full min-h-screen bg-background flex items-center py-20 relative overflow-hidden">
+    <section className="w-full min-h-screen bg-background flex items-center py-12 md:py-20 relative overflow-hidden">
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 lg:gap-16 items-start xl:grid-rows-[auto_1fr]">
           
-          {/* Left Column: Text & Team */}
-          <div className="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1">
-            <div className="space-y-4 mb-14">
+          {/* Top Left: Text */}
+          <div className="xl:col-span-6 flex flex-col justify-center items-center xl:items-start order-1">
+            <div className="space-y-4 mb-4 xl:mb-14">
 
-              <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1] flex flex-col">
+              <h2 className="font-serif items-center xl:items-start text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1] flex flex-col">
                 <span className="main-font">EL </span>
-                <span className="hero-font text-sky-500">EQUIPO.</span>
+                <span className="hero-font text-sky-500 pb-2">EQUIPO.</span>
               </h2>
-              <p className="text-white/70 text-lg md:text-xl max-w-xl leading-relaxed mt-4">
+              <p className="text-white/70 text-lg md:text-xl max-w-xl text-center xl:text-left leading-relaxed mt-4">
                 Somos una dupla creativa obsesionada con llevar la digitalización al siguiente nivel. Transformamos problemas complejos en productos simples, estéticos y altamente funcionales.
               </p>
             </div>
-
-            <div className="flex flex-col space-y-10">
-              {TEAM.map((member, i) => (
-                <div 
-                  key={i}
-                  className="relative flex max-w-150 flex-col gap-2 transition-all duration-500"
-                >
-                  <div className="flex flex-row justify-between items-center mb-2">
-                    <h3 className="text-2xl md:text-3xl font-thin text-white">
-                      {member.name}
-                    </h3>
-                    <span className="text-[10px] md:text-xs font-mono text-sky-300/80 uppercase tracking-widest border border-sky-500/20 bg-sky-500/5 px-3 py-1 rounded-lg w-max">
-                      {member.role}
-                    </span>
-                  </div>
-                  <p className="text-white/60 text-sm md:text-base leading-relaxed relative z-10 text-pretty">
-                    {member.description}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Right Column: Ascii Logo & Dithering */}
-          <div className="lg:col-span-6 h-full min-h-[500px] flex flex-col justify-center order-1 lg:order-2">
+          {/* Right Column: Image */}
+          <div className="xl:col-span-6 xl:row-span-2 h-full min-h-[300px] md:min-h-[500px] flex flex-col justify-center order-2">
             <div className="relative w-full aspect-square md:aspect-auto md:h-[700px] rounded-[28px] border border-sky-700/30 shadow-[0_0_80px_-20px_rgba(14,165,233,0.2)] overflow-hidden flex items-center justify-center group/card bg-[#030712]">
               
               {/* Background Image */}
               <div className="absolute inset-0 z-0 mix-blend-screen pointer-events-none duration-700 opacity-60">
                 <img src="/naza-marce.png" className="h-full w-full object-cover" alt="Team" loading="lazy" decoding="async" />
+              </div>
+
+              {/* Tooltips de personas — ocultos en mobile, sin hover táctil */}
+              {/* Para ajustar posiciones → editar .tooltip-naza / .tooltip-marce en globals.css */}
+              <div className="hidden md:block absolute inset-0 z-20 tracking-wider pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500">
+                <div className="tooltip-naza translate-y-2 group-hover/card:translate-y-0 transition-transform duration-500">
+                  <span className="bg-black/70 backdrop-blur-sm text-white/80 text-xs font-semibold px-3 py-1 rounded-full border border-sky-500/40 shadow-lg shadow-sky-500/10 whitespace-nowrap">
+                    Naza
+                  </span>
+                  <div className="w-px h-4 bg-sky-400/50" />
+                </div>
+                <div className="tooltip-marce translate-y-2 group-hover/card:translate-y-0 transition-transform duration-500 delay-75">
+                  <span className="bg-black/70 backdrop-blur-sm text-white/80 text-xs font-semibold px-3 py-1 rounded-full border border-sky-500/40 shadow-lg shadow-sky-500/10 whitespace-nowrap">
+                    Marce
+                  </span>
+                  <div className="w-px h-4 bg-sky-400/50" />
+                </div>
               </div>
 
               {/* Gradient Overlays para profundidad */}
@@ -76,6 +72,29 @@ export function AboutSection() {
               </div>
             </div>
           </div>
+
+          {/* Bottom Left: Team */}
+          <div className="xl:col-span-6 flex flex-col space-y-10 order-3">
+            {TEAM.map((member, i) => (
+              <div 
+                key={i}
+                className="relative flex max-w-150 flex-col gap-2 transition-all duration-500"
+              >
+                <div className="flex flex-row justify-between items-center mb-2">
+                  <h3 className="text-2xl md:text-3xl font-thin text-white">
+                    {member.name}
+                  </h3>
+                  <span className="text-[10px] text-center md:text-xs font-mono text-sky-300/80 uppercase tracking-widest border border-sky-500/20 bg-sky-500/5 px-3 py-1 rounded-lg w-max">
+                    {member.role}
+                  </span>
+                </div>
+                <p className="text-white/60 text-sm md:text-base leading-relaxed relative z-10 text-pretty">
+                  {member.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
 
         </div>
       </div>

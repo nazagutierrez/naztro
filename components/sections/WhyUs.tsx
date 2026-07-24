@@ -58,7 +58,6 @@ function DifferentiatorRow({
   item: (typeof DIFFERENTIATORS)[0];
   index: number;
 }) {
-  const [hovered, setHovered] = useState(false);
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -76,8 +75,7 @@ function DifferentiatorRow({
   return (
     <div
       ref={ref}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className="group"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(16px)",
@@ -87,37 +85,35 @@ function DifferentiatorRow({
       {/* Top separator line with fill animation */}
       <div className="relative h-px bg-white/8 overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-r from-sky-500/60 to-blue-500/40 origin-left"
-          style={{
-            transform: hovered ? "scaleX(1)" : "scaleX(0)",
-            transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-          }}
+          className="absolute inset-0 bg-gradient-to-r from-sky-500/60 to-blue-500/40 origin-left scale-x-0 md:group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
         />
       </div>
 
       {/* Row content */}
       <div
-        className="grid grid-cols-12 items-start gap-4 md:gap-8 py-7 md:py-9 cursor-default relative group"
+        className="flex flex-col md:grid md:grid-cols-12 items-start gap-3 md:gap-8 py-7 md:py-9 cursor-default relative"
       >
-        {/* Number */}
-        <div className="col-span-2 md:col-span-1 pt-1">
+        {/* Number & Mobile Tag */}
+        <div className="flex w-full justify-between items-center md:items-start md:w-auto md:col-span-1 md:block pt-1">
           <span
-            className="font-mono text-xs md:text-sm tracking-widest transition-colors duration-300"
-            style={{ color: hovered ? "rgba(56,189,248,0.9)" : "rgba(255,255,255,0.2)" }}
+            className="font-mono text-xs md:text-sm tracking-widest transition-colors duration-300 text-[rgba(56,189,248,0.9)] md:text-[rgba(255,255,255,0.2)] md:group-hover:text-[rgba(56,189,248,0.9)]"
           >
             /{item.number}
+          </span>
+          <span
+            className="md:hidden font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full border whitespace-nowrap transition-all duration-300 border-[rgba(56,189,248,0.4)] text-[rgba(56,189,248,0.9)] bg-[rgba(56,189,248,0.06)]"
+          >
+            {item.tag}
           </span>
         </div>
 
         {/* Title + description */}
-        <div className="col-span-8 md:col-span-9">
+        <div className="w-full md:col-span-9">
           {/* Title */}
           <h3
-            className="font-sans mb-2 font-medium tracking-tight leading-none transition-colors duration-400"
+            className="font-sans mb-2 font-medium tracking-tight leading-none transition-colors duration-300 text-white md:text-[rgba(255,255,255,0.7)] md:group-hover:text-white"
             style={{
               fontSize: "clamp(1.6rem, 4vw, 3.2rem)",
-              color: hovered ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.7)",
-              transition: "color 0.3s ease",
             }}
           >
             {item.title}
@@ -125,19 +121,14 @@ function DifferentiatorRow({
 
           {/* Subtitle */}
           <p
-            className="font-mono text-xs md:text-sm mt-1 transition-colors duration-300"
-            style={{ color: hovered ? "rgba(56,189,248,0.7)" : "rgba(255,255,255,0.65)" }}
+            className="font-mono text-xs md:text-sm mt-1 transition-colors duration-300 text-[rgba(56,189,248,0.7)] md:text-[rgba(255,255,255,0.65)] md:group-hover:text-[rgba(56,189,248,0.7)]"
           >
             {item.subtitle}
           </p>
 
           {/* Description — always open on mobile, expands on hover on desktop */}
           <div
-            className={`grid transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-              hovered
-                ? "grid-rows-[1fr] opacity-100"
-                : "grid-rows-[1fr] opacity-100 md:grid-rows-[0fr] md:opacity-0"
-            }`}
+            className="grid transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] grid-rows-[1fr] opacity-100 md:grid-rows-[0fr] md:opacity-0 md:group-hover:grid-rows-[1fr] md:group-hover:opacity-100"
           >
             <div style={{ overflow: "hidden", minHeight: 0 }}>
               <p className="text-white/80 text-sm md:text-base leading-relaxed pt-4 max-w-xl">
@@ -148,14 +139,9 @@ function DifferentiatorRow({
         </div>
 
         {/* Tag */}
-        <div className="col-span-2 flex justify-end items-start pt-1">
+        <div className="hidden md:flex md:col-span-2 justify-end items-start pt-1">
           <span
-            className="font-mono md:text-xs uppercase tracking-widest px-2.5 py-1 rounded-full border whitespace-nowrap transition-all duration-300"
-            style={{
-              borderColor: hovered ? "rgba(56,189,248,0.4)" : "rgba(255,255,255,0.16)",
-              color: hovered ? "rgba(56,189,248,0.9)" : "rgba(255,255,255,0.5)",
-              backgroundColor: hovered ? "rgba(56,189,248,0.06)" : "transparent",
-            }}
+            className="font-mono md:text-xs uppercase tracking-widest px-2.5 py-1 rounded-full border whitespace-nowrap transition-all duration-300 border-[rgba(255,255,255,0.16)] text-[rgba(255,255,255,0.5)] bg-transparent md:group-hover:border-[rgba(56,189,248,0.4)] md:group-hover:text-[rgba(56,189,248,0.9)] md:group-hover:bg-[rgba(56,189,248,0.06)]"
           >
             {item.tag}
           </span>
@@ -179,7 +165,7 @@ export function WhyUs() {
   }, []);
 
   return (
-    <section className="w-full py-24 md:py-32 bg-background relative overflow-hidden">
+    <section className="w-full py-16 md:py-32 bg-background relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
 
@@ -211,11 +197,8 @@ export function WhyUs() {
           </div>
         </div>
 
-        {/* Differentiators — editorial list.
-             md:min-h-[850px] le da suficiente altura al contenedor en desktop
-             para que cuando una row se abra, no empuje el contenido de abajo.
-             En móvil fluye naturalmente. */}
-        <div className="md:h-screen">
+        {/* Differentiators — editorial list. */}
+        <div className="relative lg:h-screen">
           {DIFFERENTIATORS.map((item, i) => (
             <DifferentiatorRow key={item.number} item={item} index={i} />
           ))}

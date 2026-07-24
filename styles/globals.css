@@ -5,6 +5,71 @@
   --font-serif: "IBM Plex Serif", serif;
 }
 
+/* ─── Tooltip positions for AboutSection ───────────────────────────────
+   La card es aspect-square en <768px (tooltips ocultos).
+   En >=768px la card pasa a h-[700px] y ocupa el ancho completo.
+   En >=1280px (xl) la card queda en 6/12 columnas → más angosta.
+   Ajustá left/top para cada rango hasta que queden sobre cada cara.
+──────────────────────────────────────────────────────────────────────── */
+
+.tooltip-naza,
+.tooltip-marce {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 768px – 1023px: card ancha, aspect-auto h-700 */
+@media (min-width: 768px) {
+  .tooltip-naza  { left: 18%; top: 16%; }
+  .tooltip-marce { left: 85%; top: 18%; }
+}
+@media (min-width: 868px) {
+  .tooltip-naza  { left: 20%; top: 16%; }
+  .tooltip-marce { left: 82%; top: 18%; }
+}
+
+/* 1024px – 1279px */
+@media (min-width: 1024px) {
+  .tooltip-naza  { left: 25%; top: 16%; }
+  .tooltip-marce { left: 75%; top: 18%; }
+}
+@media (min-width: 1090px) {
+  .tooltip-naza  { left: 25%; top: 17%; }
+  .tooltip-marce { left: 75%; top: 17%; }
+}
+@media (min-width: 1150px) {
+  .tooltip-naza  { left: 25%; top: 15%; }
+  .tooltip-marce { left: 75%; top: 17%; }
+}
+@media (min-width: 1200px) {
+  .tooltip-naza  { left: 25%; top: 12%; }
+  .tooltip-marce { left: 75%; top: 14%; }
+}
+
+/* 1280px – 1439px: grid 12 cols, card 6/12 */
+@media (min-width: 1280px) {
+  .tooltip-naza  { left: 10%; top: 15%; }
+  .tooltip-marce { left: 90%; top: 18%; }
+}
+
+/* 1440px+ */
+@media (min-width: 1440px) {
+  .tooltip-naza  { left: 17%; top: 16%; }
+  .tooltip-marce { left: 88%; top: 17%; }
+}
+
+/* 1920px+ */
+@media (min-width: 1920px) {
+  .tooltip-naza  { left: 20%; top: 16%; }
+  .tooltip-marce { left: 80%; top: 16%; }
+}
+
+
+
 #logo-mask {
   --size: 0px;
 
@@ -28,6 +93,12 @@ body {
   font-family: "Special Gothic Expanded One", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.hero-font-family {
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .hero-font {

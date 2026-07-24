@@ -20,29 +20,30 @@ export default function App() {
       <SmoothScroll>
         <CTASection />
         <main>
-          <Suspense fallback={<div className="h-96 w-full bg-background" />}>
-            <section id="trabajos">
-              <VerticalTabs />
-            </section>
-            <section id="servicios">
-              <ServicesSection />
-            </section>
-            <section id="why-us">
-              <WhyUs />
-            </section>
-            <section id="proceso">
-              <HowWeWork />
-            </section>
-            <section id="nosotros">
-              <AboutSection />
-            </section>
-            <section id="faq">
-              <FAQ />
-            </section>
-            <section id="contacto">
-              <CTA />
-            </section>
-          </Suspense>
+          <section id="trabajos">
+            <VerticalTabs />
+          </section>
+          <section id="servicios">
+            <ServicesSection />
+          </section>
+          <section id="why-us">
+            <WhyUs />
+          </section>
+          <section id="proceso">
+            <HowWeWork />
+          </section>
+          <section id="nosotros">
+            <AboutSection />
+          </section>
+          <section id="testimonios">
+            <Testimonials />
+          </section>
+          <section id="faq">
+            <FAQ />
+          </section>
+          <section id="contacto">
+            <CTA />
+          </section>
         </main>
         <Footer />
       </SmoothScroll>
