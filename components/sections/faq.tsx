@@ -35,16 +35,16 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full py-16 md:py-32 bg-background relative overflow-hidden flex flex-col items-center">
+    <section className="w-full h-[1000px] sm:h-[1100px] lg:h-[850px] xl:h-screen py-16 md:py-32 lg:pb-0 bg-background relative overflow-hidden flex flex-col items-center">
       
       {/* Background Glow */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
 
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto z-10 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row gap-x-14 gap-y-7 justify-center">
           
           {/* Header */}
-          <div className="lg:col-span-5 flex flex-col items-start">
+          <div className="flex flex-col items-start">
             <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-4 py-1.5 text-sm font-medium text-sky-400 backdrop-blur-sm w-max mb-6">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
@@ -64,7 +64,7 @@ export function FAQ() {
           </div>
 
           {/* Questions */}
-          <div className="lg:col-span-7 space-y-4">
+          <div className="w-full space-y-4">
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
@@ -82,7 +82,7 @@ export function FAQ() {
                   )}
                   
                   <button
-                    className="relative cursor-pointer w-full px-6 py-6 md:px-8 flex items-center justify-between text-left group z-10"
+                    className="relative cursor-pointer w-full px-6 py-4 md:py-6 md:px-8 flex items-center justify-between text-left group z-10"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     aria-expanded={isOpen}
                   >

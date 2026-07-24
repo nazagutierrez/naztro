@@ -32,12 +32,12 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="w-full py-16 md:py-32 bg-background relative flex flex-col items-center">
+    <section className="w-full py-16 md:py-32 bg-background relative flex flex-col items-center" style={{ overflowX: 'clip' }}>
       
       {/* Luces de fondo ambientales */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
+      <div className="absolute overflow-hidden top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
 
-      <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto z-10 relative mb-16 text-center">
+      <div className="w-full overflow-hidden px-4 md:px-8 lg:px-12 xl:px-20 mx-auto z-10 relative mb-16 text-center">
         <h2 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.1] flex flex-col items-center">
           <span className="main-font">LO QUE </span>
           <span className="hero-font text-sky-500">DICEN.</span>
@@ -45,7 +45,7 @@ export function Testimonials() {
       </div>
 
       <div 
-        className="w-full relative z-10 py-4"
+        className="w-full overflow-hidden relative z-10 py-4"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'

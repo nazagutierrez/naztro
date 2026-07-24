@@ -140,7 +140,7 @@ export function CTASection() {
   }, []);
 
   return (
-    <section className="py-12 w-full mb-6 md:mb-10 flex justify-center items-center px-4 md:px-6">
+    <section className="py-4 sm:py-12 w-full mb-6 md:mb-10 flex justify-center items-center px-4 md:px-6">
       {/* ========= */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
         <div className="w-full h-screen" id="logo-mask"></div>
@@ -159,12 +159,12 @@ export function CTASection() {
       </div>
       {/* ========= */}
       <div
-        className="w-full mx-10 relative"
+        className="w-full sm:mx-10 relative"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         id="ttl-bg"
       >
-        <div className="relative overflow-hidden rounded-[28px] border border-sky-700 shadow-sm min-h-[600px] md:min-h-[750px] flex flex-col items-center justify-center duration-500 z-40">
+        <div className="relative overflow-hidden rounded-[28px] border border-sky-700 shadow-sm min-h-[95dvh] sm:min-h-[600px] md:min-h-[750px] flex flex-col items-center justify-center duration-500 z-40">
           <Suspense fallback={<div className="absolute inset-0 bg-muted/20" />}>
             <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen">
               <Dithering
@@ -185,7 +185,8 @@ export function CTASection() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-600 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
               </span>
-              Disponibles para nuevos proyectos
+              <p className="hidden sm:block">Disponibles para nuevos proyectos</p>
+              <p className="block sm:hidden">Disponibles</p>
             </div>
 
             {/* Headline */}

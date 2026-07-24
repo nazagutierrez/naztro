@@ -51,7 +51,7 @@ export function Marquee({
     >
       <div
         ref={scrollerRef}
-        className={`flex w-max gap-8 ${start ? "animate-marquee" : ""} ${
+        className={`flex w-max md:gap-2 lg:gap-4 ${start ? "animate-marquee" : ""} ${
           pauseOnHover ? "hover:[animation-play-state:paused]" : ""
         }`}
         style={{
