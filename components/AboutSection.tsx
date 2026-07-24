@@ -1,10 +1,4 @@
-import React, { lazy, Suspense } from "react";
-
-const Dithering = lazy(() =>
-  import("@paper-design/shaders-react").then((mod) => ({
-    default: mod.Dithering,
-  })),
-);
+import React from "react";
 
 // Puedes editar los nombres e info aquí:
 const TEAM = [
@@ -44,12 +38,10 @@ export function AboutSection() {
           <div className="xl:col-span-6 xl:row-span-2 h-full min-h-[300px] md:min-h-[500px] flex flex-col justify-center order-2">
             <div className="relative w-full aspect-square md:aspect-auto md:h-[700px] rounded-[28px] border border-sky-700/30 shadow-[0_0_80px_-20px_rgba(14,165,233,0.2)] overflow-hidden flex items-center justify-center group/card bg-[#030712]">
               
-              {/* Background Dithering (Estilo Hero) */}
-              <Suspense fallback={<div className="absolute inset-0 bg-[#030712]" />}>
-                <div className="absolute inset-0 z-0 mix-blend-screen pointer-events-none duration-700 opacity-60">
-                  <img src="/naza-marce.png" className="h-full w-full object-cover" alt="" />
-                </div>
-              </Suspense>
+              {/* Background Image */}
+              <div className="absolute inset-0 z-0 mix-blend-screen pointer-events-none duration-700 opacity-60">
+                <img src="/naza-marce.png" className="h-full w-full object-cover" alt="Team" loading="lazy" decoding="async" />
+              </div>
 
               {/* Tooltips de personas — ocultos en mobile, sin hover táctil */}
               {/* Para ajustar posiciones → editar .tooltip-naza / .tooltip-marce en globals.css */}

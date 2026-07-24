@@ -191,9 +191,9 @@ export function WhyUs() {
               <span className="main-font">LO QUE NOS</span>
               <span className="hero-font pb-5">diferencia.</span>
             </h2>
-            <p className="text-white text-base md:text-lg max-w-xs leading-relaxed md:text-right">
+            <div className="text-white text-base md:text-lg max-w-xs leading-relaxed md:text-right">
               <h4 className="hero-font text-2xl">No somos una agencia más.</h4>
-            </p>
+            </div>
           </div>
         </div>
 

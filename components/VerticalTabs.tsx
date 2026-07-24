@@ -331,6 +331,8 @@ export function VerticalTabs() {
                       src={SERVICES[activeIndex].image}
                       alt={SERVICES[activeIndex].title}
                       className="w-full h-full object-cover transition-transform duration-700 m-0! p-0! block"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-60" />
                   </motion.div>

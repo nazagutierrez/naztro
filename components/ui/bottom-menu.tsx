@@ -72,12 +72,11 @@ export function MenuBar({ items, className, ...props }: MenuBarProps) {
         className="h-11 px-3 inline-flex justify-center items-center gap-[8px] overflow-hidden z-10 rounded-full bg-background/95 backdrop-blur border border-sky-700 shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_8px_16px_-4px_rgba(0,0,0,0.1)] dark:border-border/50 dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_8px_16px_-4px_rgba(0,0,0,0.2)]"
       >
         {items.map((item, index) => (
-          <>
+          <React.Fragment key={index}>
             <a 
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              key={index}
               className="w-8 h-8 px-3 py-1 group rounded-full flex justify-center items-center gap-2 hover:bg-muted/80 transition-colors cursor-pointer"
               onMouseEnter={() => setActiveIndex(index)}
               onMouseLeave={() => setActiveIndex(null)}
@@ -90,7 +89,7 @@ export function MenuBar({ items, className, ...props }: MenuBarProps) {
               <span className="sr-only">{item.label}</span>
             </a>
             <div className="h-4 w-px bg-white/30 rounded-full last:hidden"></div>
-          </>
+          </React.Fragment>
         ))}
       </div>
     </div>

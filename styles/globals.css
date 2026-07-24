@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-serif: "IBM Plex Serif", serif;
+}
+
 /* ─── Tooltip positions for AboutSection ───────────────────────────────
    La card es aspect-square en <768px (tooltips ocultos).
    En >=768px la card pasa a h-[700px] y ocupa el ancho completo.
