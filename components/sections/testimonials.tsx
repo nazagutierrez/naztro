@@ -32,7 +32,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="w-full py-16 md:py-32 bg-background relative overflow-hidden flex flex-col items-center">
+    <section className="w-full py-16 md:py-32 bg-background relative flex flex-col items-center">
       
       {/* Luces de fondo ambientales */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />

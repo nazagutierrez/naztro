@@ -117,7 +117,7 @@ export function ServicesSection() {
   }, []);
 
   return (
-    <section className="w-full relative bg-background overflow-hidden py-16 md:py-32">
+    <section className="w-full relative overflow-hidden bg-background py-16 md:py-32">
       
       {/* Ambient background glows */}
       <div className="absolute top-1/4 left-0 w-[600px] h-[600px] rounded-full pointer-events-none -translate-x-1/2" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
@@ -126,12 +126,12 @@ export function ServicesSection() {
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
         
         {/* Top Header Row: Title & AsciiLogo Showcase */}
-        <div className="flex flex-col lg:flex-row items-stretch gap-6 md:gap-8 mb-6 md:mb-8">
+        <div className="flex  flex-col lg:flex-row items-stretch gap-6 md:gap-8 mb-6 md:mb-8">
           
           {/* Title Area */}
           <div 
             ref={titleRef}
-            className="lg:w-7/12 rounded-[2rem] md:p-12 lg:p-16 flex flex-col justify-center relative overflow-hidden group"
+            className="lg:w-7/12 md:p-12 lg:p-16 flex flex-col justify-center relative group"
             style={{
               opacity: titleVisible ? 1 : 0,
               transform: titleVisible ? "translateY(0)" : "translateY(20px)",
@@ -158,18 +158,18 @@ export function ServicesSection() {
           </div>
           
           {/* AsciiLogo Showcase Container */}
-          <div className="lg:w-5/12 min-h-[350px] lg:min-h-0 rounded-[2rem] relative group flex flex-col items-center justify-center">
+          <div className="lg:w-5/12 min-h-[350px] absolute -right-10 sm:right-0 -top-30 md:-top-4 lg:top-0 lg:min-h-0 rounded-[2rem] lg:relative group flex flex-col items-center justify-center">
             {/* Background Glow */}
             <div className="absolute w-60 h-60 rounded-full scale-150 opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.25) 0%, transparent 70%)' }} />
             
             {/* Interaction Hint */}
-            <div className="absolute top-18 right-8 font-mono text-[10px] text-sky-400/70 uppercase tracking-widest flex items-center gap-2">
+            <div className="absolute  top-18 right-8 font-mono text-[10px] text-sky-400/70 uppercase tracking-widest hidden md:flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-sky-400/70 animate-ping" />
               Interactua
             </div>
 
             {/* Logo */}
-            <div className="relative z-10 w-full h-full aspect-square transition-transform duration-700 ease-out group-hover:scale-105">
+            <div className="relative z-10 opacity-70 md:opacity-100 w-full max-h-120 aspect-square transition-transform duration-700 ease-out group-hover:scale-105">
                <AsciiLogo />
             </div>
           </div>

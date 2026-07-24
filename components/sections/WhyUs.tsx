@@ -222,7 +222,7 @@ export function WhyUs() {
         </div>
 
         {/* Differentiators — editorial list. */}
-        <div className="relative">
+        <div className="relative lg:h-screen">
           {DIFFERENTIATORS.map((item, i) => (
             <DifferentiatorRow key={item.number} item={item} index={i} />
           ))}

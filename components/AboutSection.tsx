@@ -24,15 +24,15 @@ export function AboutSection() {
   return (
     <section className="w-full min-h-screen bg-background flex items-center py-12 md:py-20 relative overflow-hidden">
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Text & Team */}
-          <div className="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1">
+          <div className="lg:col-span-6 flex flex-col justify-center items-center xl:items-start order-2 lg:order-1">
             <div className="space-y-4 mb-14">
 
-              <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1] flex flex-col">
+              <h2 className="font-serif items-center xl:items-start text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1] flex flex-col">
                 <span className="main-font">EL </span>
-                <span className="hero-font text-sky-500">EQUIPO.</span>
+                <span className="hero-font text-sky-500 pb-2">EQUIPO.</span>
               </h2>
               <p className="text-white/70 text-lg md:text-xl max-w-xl leading-relaxed mt-4">
                 Somos una dupla creativa obsesionada con llevar la digitalización al siguiente nivel. Transformamos problemas complejos en productos simples, estéticos y altamente funcionales.
@@ -71,6 +71,23 @@ export function AboutSection() {
                   <img src="/naza-marce.png" className="h-full w-full object-cover" alt="" />
                 </div>
               </Suspense>
+
+              {/* Tooltips de personas — ocultos en mobile, sin hover táctil */}
+              {/* Para ajustar posiciones → editar .tooltip-naza / .tooltip-marce en globals.css */}
+              <div className="hidden md:block absolute inset-0 z-20 tracking-wider pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500">
+                <div className="tooltip-naza translate-y-2 group-hover/card:translate-y-0 transition-transform duration-500">
+                  <span className="bg-black/70 backdrop-blur-sm text-white/80 text-xs font-semibold px-3 py-1 rounded-full border border-sky-500/40 shadow-lg shadow-sky-500/10 whitespace-nowrap">
+                    Naza
+                  </span>
+                  <div className="w-px h-4 bg-sky-400/50" />
+                </div>
+                <div className="tooltip-marce translate-y-2 group-hover/card:translate-y-0 transition-transform duration-500 delay-75">
+                  <span className="bg-black/70 backdrop-blur-sm text-white/80 text-xs font-semibold px-3 py-1 rounded-full border border-sky-500/40 shadow-lg shadow-sky-500/10 whitespace-nowrap">
+                    Marce
+                  </span>
+                  <div className="w-px h-4 bg-sky-400/50" />
+                </div>
+              </div>
 
               {/* Gradient Overlays para profundidad */}
               <div className="absolute inset-0 z-1 bg-gradient-to-t from-[#0307123a] via-transparent to-[#030712]/20 pointer-events-none" />
