@@ -11,7 +11,8 @@ const WhyUs = lazy(() => import("@/components/sections/WhyUs").then(mod => ({ de
 const HowWeWork = lazy(() => import("@/components/sections/HowWeWork").then(mod => ({ default: mod.HowWeWork })));
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const FAQ = lazy(() => import("@/components/sections/faq").then(mod => ({ default: mod.FAQ })));
-const CTA = lazy(() => import("@/components/sections/cta").then(mod => ({ default: mod.CTA })));
+const CTA = lazy(() => import("@/components/sections/Cta").then(mod => ({ default: mod.CTA })));
+const Testimonials = lazy(() => import("@/components/sections/Testimonials").then(mod => ({ default: mod.Testimonials })));
 
 export default function App() {
   return (
@@ -20,30 +21,32 @@ export default function App() {
       <SmoothScroll>
         <CTASection />
         <main>
-          <section id="trabajos">
-            <VerticalTabs />
-          </section>
-          <section id="servicios">
-            <ServicesSection />
-          </section>
-          <section id="why-us">
-            <WhyUs />
-          </section>
-          <section id="proceso">
-            <HowWeWork />
-          </section>
-          <section id="nosotros">
-            <AboutSection />
-          </section>
-          <section id="testimonios">
-            <Testimonials />
-          </section>
-          <section id="faq">
-            <FAQ />
-          </section>
-          <section id="contacto">
-            <CTA />
-          </section>
+          <Suspense fallback={null}>
+            <section id="trabajos">
+              <VerticalTabs />
+            </section>
+            <section id="servicios">
+              <ServicesSection />
+            </section>
+            <section id="why-us">
+              <WhyUs />
+            </section>
+            <section id="proceso">
+              <HowWeWork />
+            </section>
+            <section id="nosotros">
+              <AboutSection />
+            </section>
+            <section id="testimonios">
+              <Testimonials />
+            </section>
+            <section id="faq">
+              <FAQ />
+            </section>
+            <section id="contacto">
+              <CTA />
+            </section>
+          </Suspense>
         </main>
         <Footer />
       </SmoothScroll>

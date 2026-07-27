@@ -125,11 +125,11 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: n
           {service.description}
         </p>
 
-        <div className={`mt-8 flex items-center text-sky-400 font-mono text-xs tracking-widest uppercase transition-all duration-500 ${
+        <a href="https://wa.me/5492364514241" target="_blank" rel="noopener noreferrer" className={`mt-8 flex items-center text-sky-400 font-mono text-xs tracking-widest uppercase transition-all duration-500 ${
           isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
         } md:group-hover:opacity-100 md:group-hover:translate-x-0`}>
-          Descubrir más <ArrowRight className="w-4 h-4 ml-2" />
-        </div>
+          Contactanos <ArrowRight className="w-4 h-4 ml-2" />
+        </a>
       </div>
     </div>
   );

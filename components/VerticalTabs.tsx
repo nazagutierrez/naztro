@@ -93,12 +93,12 @@ export function VerticalTabs() {
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto">
 
         {/* Titulo: solo visible en mobile (lg lo muestra dentro del grid) */}
-        <div className="block lg:hidden space-y-1 mb-8">
+        <div className="flex flex-col items-center lg:hidden text-center space-y-3 mb-8">
           <h2 className="main-font text-balance text-4xl font-medium text-neutral-300">
             NUESTROS TRABAJOS
           </h2>
-          <span className="text-[10px] font-medium text-muted-neutral-300 uppercase tracking-[0.3em] block ml-0.5">
-            (RESUMEN)
+          <span className="text-neutral-300 block ml-0.5 max-w-140">
+            Resumen de nuestros proyectos mas importantes, donde hemos mejorado ampliamente la marca digital del negocio
           </span>
         </div>
 
@@ -230,8 +230,8 @@ export function VerticalTabs() {
               <h2 className="main-font text-balance text-5xl font-medium lg:text-5xl text-neutral-300">
                 NUESTROS TRABAJOS
               </h2>
-              <span className="text-[10px] font-medium text-muted-neutral-300 uppercase tracking-[0.3em] block ml-0.5">
-                (RESUMEN)
+              <span className="text-neutral-300 block ml-0.5 pr-10">
+                Resumen de nuestros proyectos mas importantes, donde hemos mejorado ampliamente la marca digital del negocio
               </span>
             </div>
 
