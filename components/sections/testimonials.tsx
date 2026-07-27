@@ -4,31 +4,26 @@ import { Marquee } from "@/components/Marquee"
 
 const testimonials = [
   {
-    quote: "Entendieron perfectamente lo que buscábamos. Nuestra nueva landing no solo se ve increíble, sino que aumentó las conversiones un 45%.",
-    author: "Federico L.",
-    role: "CEO, StartFlow",
+    quote: "El trabajo que hicieron superó nuestras expectativas. Lograron captar la esencia de la marca a la perfección y la web ahora refleja el verdadero nivel de nuestros productos.",
+    author: "Valentina Carini",
+    role: "Nordicaps",
   },
   {
-    quote: "La atención al detalle y las micro-animaciones marcan la diferencia. El producto final se siente premium de principio a fin.",
-    author: "Camila V.",
-    role: "Dir. de Marketing, Prisma",
+    quote: "Necesitábamos una presencia online fuerte y moderna, y Naztro lo hizo realidad. La atención, la rapidez y el diseño final del sitio son de primera clase.",
+    author: "Jose Alberto",
+    role: "Piso Fuerte",
   },
   {
-    quote: "Un equipo brutal. Reestructuraron todo nuestro frontend y la plataforma ahora vuela. Gran experiencia trabajando con Naztro.",
-    author: "Martín R.",
-    role: "CTO, NextGen Logistics",
+    quote: "Rediseñaron nuestra identidad digital por completo. Son muy profesionales y el sitio no solo es extremadamente rápido sino que estéticamente es increíble.",
+    author: "Javier",
+    role: "Dymo",
   },
   {
-    quote: "Buscábamos algo que gritara innovación y superaron las expectativas. El diseño es limpio, moderno y exactamente lo que necesitábamos.",
-    author: "Julieta S.",
-    role: "Founder, NeonLab",
+    quote: "La experiencia de usuario que crearon para nosotros es brutal. Entendieron al instante nuestro nicho y el resultado fue una web súper dinámica e interactiva.",
+    author: "Javier Taboada",
+    role: "Rave dates",
   },
-  {
-    quote: "Desarrollo a medida real. No usaron plantillas, todo fue hecho desde cero para nuestras necesidades. Totalmente recomendados.",
-    author: "Alejandro G.",
-    role: "Director, Apex E-commerce",
-  },
-]
+];
 
 export function Testimonials() {
   return (
