@@ -1,6 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AsciiLogo from "./AsciiLogo";
 import { LayoutTemplate, Code2, ShoppingCart, PenTool, ArrowRight } from "lucide-react";
+import { useInView } from "framer-motion";
 
 const SERVICES = [
   {
@@ -30,46 +31,15 @@ const SERVICES = [
 ];
 
 function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: number }) {
-  const [visible, setVisible] = useState(false);
-  const [isActive, setIsActive] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Observer for fade in animation
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-        }
-      },
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-
-    // Observer for mobile "scroll-hover" effect
-    const scrollObserver = new IntersectionObserver(
-      ([entry]) => {
-        // Only trigger on mobile (roughly < 768px)
-        if (window.innerWidth < 768) {
-          setIsActive(entry.isIntersecting);
-        }
-      },
-      { rootMargin: "-35% 0px -35% 0px", threshold: 0 }
-    );
-    if (ref.current) scrollObserver.observe(ref.current);
-
-    // Handle resize to reset active state on desktop
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setIsActive(false);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      observer.disconnect();
-      scrollObserver.disconnect();
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  
+  // Single observer for both visibility and scroll state
+  const visible = useInView(ref, { once: true, amount: 0.15 });
+  const scrollActive = useInView(ref, { margin: "-35% 0px -35% 0px", amount: 0 });
+  
+  // Use CSS media query via Tailwind for hover instead of resize listener.
+  // The 'isActive' state is only used for mobile touch/scroll interactions.
+  const isActive = scrollActive;
 
   const Icon = service.icon;
 
@@ -83,15 +53,15 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: n
       }}
       className={`group relative p-8 md:p-10 rounded-[2rem] border overflow-hidden transition-all duration-500 flex flex-col justify-between md:min-h-[320px] ${
         isActive 
-          ? "bg-[#0a0f1a]/80 border-sky-500/30 shadow-[0_0_80px_-15px_rgba(14,165,233,0.15)]" 
+          ? "bg-[#0a0f1a]/80 border-sky-500/30 shadow-[0_0_80px_-15px_rgba(14,165,233,0.15)] md:bg-[#0a0f1a]/40 md:border-white/5 md:shadow-none" 
           : "bg-[#0a0f1a]/40 border-white/5"
       } md:hover:bg-[#0a0f1a]/80 md:hover:border-sky-500/30 md:hover:shadow-[0_0_80px_-15px_rgba(14,165,233,0.15)]`}
     >
       {/* Corner Glow */}
-      <div className={`absolute -top-32 -right-32 w-64 h-64 transition-opacity duration-700 rounded-full pointer-events-none ${isActive ? 'opacity-100' : 'opacity-0'} md:group-hover:opacity-100`} style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)' }} />
+      <div className={`absolute -top-32 -right-32 w-64 h-64 transition-opacity duration-700 rounded-full pointer-events-none ${isActive ? 'opacity-100 md:opacity-0' : 'opacity-0'} md:group-hover:opacity-100`} style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)' }} />
       
       {/* Bottom gradient line */}
-      <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sky-500/50 to-transparent transition-transform duration-700 ease-out ${isActive ? 'scale-x-100' : 'scale-x-0'} md:group-hover:scale-x-100`} />
+      <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-sky-500/50 to-transparent transition-transform duration-700 ease-out ${isActive ? 'scale-x-100 md:scale-x-0' : 'scale-x-0'} md:group-hover:scale-x-100`} />
 
       {/* Hover Background Logo */}
       <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
@@ -99,7 +69,7 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: n
           src="/naztro.svg"
           alt=""
           className={`absolute w-[85%] h-[85%] object-contain transition-all duration-700 ease-out
-            ${isActive ? 'opacity-[0.1] translate-x-0 translate-y-0' : `opacity-0 ${index % 2 === 0 ? 'translate-x-1/2' : '-translate-x-1/2'} ${index < 2 ? 'translate-y-1/2' : '-translate-y-1/2'}`}
+            ${isActive ? 'opacity-[0.1] translate-x-0 translate-y-0 md:opacity-0 ' + (index % 2 === 0 ? 'md:translate-x-1/2' : 'md:-translate-x-1/2') + ' ' + (index < 2 ? 'md:translate-y-1/2' : 'md:-translate-y-1/2') : `opacity-0 ${index % 2 === 0 ? 'translate-x-1/2' : '-translate-x-1/2'} ${index < 2 ? 'translate-y-1/2' : '-translate-y-1/2'}`}
             md:group-hover:opacity-[0.1] md:group-hover:translate-x-0 md:group-hover:translate-y-0
           `}
         />
@@ -108,25 +78,25 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: n
       <div className="relative z-10 flex-1 flex flex-col">
         <div className="flex items-start justify-between mb-8">
           <div className={`w-14 h-14 rounded-2xl bg-[#030712]/80 border flex items-center justify-center transition-all shadow-lg ${
-            isActive ? 'border-sky-500/50 text-sky-400' : 'border-white/10 text-white/70'
+            isActive ? 'border-sky-500/50 text-sky-400 md:border-white/10 md:text-white/70' : 'border-white/10 text-white/70'
           } md:group-hover:border-sky-500/50 md:group-hover:text-sky-400`}>
             <Icon strokeWidth={1.5} className="w-6 h-6" />
           </div>
-          <span className={`font-mono text-3xl md:text-4xl font-light transition-colors duration-500 select-none ${isActive ? 'text-sky-500/20' : 'text-white/5'} md:group-hover:text-sky-500/20`}>
+          <span className={`font-mono text-3xl md:text-4xl font-light transition-colors duration-500 select-none ${isActive ? 'text-sky-500/20 md:text-white/5' : 'text-white/5'} md:group-hover:text-sky-500/20`}>
             {service.id}
           </span>
         </div>
         
-        <h3 className={`text-2xl font-medium mb-4 transition-colors duration-300 ${isActive ? 'text-sky-300' : 'text-white'} md:group-hover:text-sky-300`}>
+        <h3 className={`text-2xl font-medium mb-4 transition-colors duration-300 ${isActive ? 'text-sky-300 md:text-white' : 'text-white'} md:group-hover:text-sky-300`}>
           {service.title}
         </h3>
         
-        <p className={`text-sm md:text-base leading-relaxed transition-colors duration-300 flex-1 ${isActive ? 'text-white/70' : 'text-white/50'} md:group-hover:text-white/70`}>
+        <p className={`text-sm md:text-base leading-relaxed transition-colors duration-300 flex-1 ${isActive ? 'text-white/70 md:text-white/50' : 'text-white/50'} md:group-hover:text-white/70`}>
           {service.description}
         </p>
 
         <a href="https://wa.me/5492364514241" target="_blank" rel="noopener noreferrer" className={`mt-8 flex items-center text-sky-400 font-mono text-xs tracking-widest uppercase transition-all duration-500 ${
-          isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+          isActive ? 'opacity-100 translate-x-0 md:opacity-0 md:-translate-x-4' : 'opacity-0 -translate-x-4'
         } md:group-hover:opacity-100 md:group-hover:translate-x-0`}>
           Contactanos <ArrowRight className="w-4 h-4 ml-2" />
         </a>

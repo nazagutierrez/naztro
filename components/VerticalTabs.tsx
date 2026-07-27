@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useInView } from "motion/react";
 import ChevronSvg from "./svg/ChevronSvg";
 
 // Change Here
@@ -12,14 +12,14 @@ const SERVICES = [
     href: "www.pisofuerte.com.ar",
     description:
       "Creating beautiful, functional, and user-centric digital experiences.",
-    image: "/piso-blue.png",
+    image: "/piso-blue.webp",
   },
   {
     id: "02",
     title: "Nordicaps",
     href: "nordicaps.vercel.app",
     description: "Building high-performance, animated websites with Framer.",
-    image: "/nordicaps-blue.png",
+    image: "/nordicaps-blue.webp",
   },
   {
     id: "03",
@@ -27,7 +27,7 @@ const SERVICES = [
     href: "dymo.tpeoficial.com",
     description:
       "Defining your brand visual identity and voice for a lasting impression.",
-    image: "/dymo-blue.png",
+    image: "/dymo-blue.webp",
   },
 ];
 
@@ -37,6 +37,8 @@ export function VerticalTabs() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { margin: "200px" });
 
   const handleNext = useCallback(() => {
     setDirection(1);
@@ -56,12 +58,12 @@ export function VerticalTabs() {
   };
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || !isInView) return;
     const interval = setInterval(() => {
       handleNext();
     }, AUTO_PLAY_DURATION);
     return () => clearInterval(interval);
-  }, [activeIndex, isPaused, handleNext]);
+  }, [activeIndex, isPaused, isInView, handleNext]);
 
   const imageVariants = {
     enter: (direction: number) => ({
@@ -89,7 +91,7 @@ export function VerticalTabs() {
   };
 
   return (
-    <section className="w-full bg-transparent sm:min-h-screen h-auto flex items-center pb-20 sm:pb-16 pt-16 lg:pb-0 lg:pt-0 [overflow-anchor:none]">
+    <section ref={containerRef} className="w-full bg-transparent sm:min-h-screen h-auto flex items-center pb-20 sm:pb-16 pt-16 lg:pb-0 lg:pt-0 [overflow-anchor:none]">
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto">
 
         {/* Titulo: solo visible en mobile (lg lo muestra dentro del grid) */}

@@ -69,6 +69,8 @@ export default function AsciiLogo() {
       displayCanvas.height = rows * charHeight;
 
       let lastTime = Date.now();
+      let isVisible = false;
+      let isDrawing = false;
 
       const draw = () => {
         dCtx.clearRect(0, 0, displayCanvas.width, displayCanvas.height);
@@ -121,32 +123,54 @@ export default function AsciiLogo() {
            }
         }
 
-        // Render grid
+        // Render grid (Batching by state for performance)
+        dCtx.fillStyle = "#85acff";
+        dCtx.font = `${fontSize}px monospace`;
         for (let y = 0; y < grid.length; y++) {
           for (let x = 0; x < grid[y].length; x++) {
             const cell = grid[y][x];
-            if (!cell.isLogo) continue;
-
-            if (now - cell.hoverTime < 500) {
-              dCtx.fillStyle = "#a3bef1"; // celeste claro (tailwind sky-200)
-              dCtx.font = `bold ${fontSize + 2}px monospace`;
-            } else {
-              dCtx.fillStyle = "#85acff";
-              dCtx.font = `${fontSize}px monospace`;
+            if (cell.isLogo && now - cell.hoverTime >= 500) {
+              dCtx.fillText(cell.char, x * charWidth, y * charHeight);
             }
-
-            dCtx.fillText(cell.char, x * charWidth, y * charHeight);
           }
         }
 
-        animationRef.current = requestAnimationFrame(draw);
+        dCtx.fillStyle = "#a3bef1"; // celeste claro (tailwind sky-200)
+        dCtx.font = `bold ${fontSize + 2}px monospace`;
+        for (let y = 0; y < grid.length; y++) {
+          for (let x = 0; x < grid[y].length; x++) {
+            const cell = grid[y][x];
+            if (cell.isLogo && now - cell.hoverTime < 500) {
+              dCtx.fillText(cell.char, x * charWidth, y * charHeight);
+            }
+          }
+        }
+
+        if (isVisible) {
+          animationRef.current = requestAnimationFrame(draw);
+        } else {
+          isDrawing = false;
+        }
       };
 
-      draw();
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible && !isDrawing) {
+            isDrawing = true;
+            draw();
+          }
+        });
+      }, { rootMargin: "200px" });
+      
+      if (displayCanvas) observer.observe(displayCanvas);
     };
 
     return () => {
       cancelAnimationFrame(animationRef.current);
+      if (displayCanvasRef.current) {
+         // The observer variable is scoped in the onload block, so we'll just rely on the effect unmounting
+      }
     };
   }, []);
 

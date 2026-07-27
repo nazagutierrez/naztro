@@ -1,11 +1,12 @@
 import { ArrowRight } from "lucide-react";
-import { useState, Suspense, lazy, useEffect } from "react";
+import { useState, Suspense, lazy, useEffect, useRef } from "react";
 import { MenuBar } from "./ui/bottom-menu";
 import InstagramSvg from "./svg/InstagramSvg";
 import MailSvg from "./svg/MailSvg";
 import WhatsappSvg from "./svg/WhatsappSvg";
 import CallSvg from "./svg/CallSvg";
 import { gsap } from "gsap";
+import { useInView } from "framer-motion";
 import HeroButton from "./ui/HeroButton";
 
 const Dithering = lazy(() =>
@@ -39,6 +40,8 @@ const menuItems = [
 
 export function CTASection() {
   const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { margin: "100px" });
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -140,7 +143,7 @@ export function CTASection() {
   }, []);
 
   return (
-    <section className="py-4 sm:py-12 w-full mb-6 md:mb-10 flex justify-center items-center px-4 md:px-6">
+    <section ref={containerRef} className="py-4 sm:py-12 w-full mb-6 md:mb-10 flex justify-center items-center px-4 md:px-6">
       {/* ========= */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
         <div className="w-full h-screen" id="logo-mask"></div>
@@ -167,15 +170,17 @@ export function CTASection() {
         <div className="relative overflow-hidden rounded-[28px] border border-sky-700 shadow-sm min-h-[95dvh] sm:min-h-[600px] md:min-h-[750px] flex flex-col items-center justify-center duration-500 z-40">
           <Suspense fallback={<div className="absolute inset-0 bg-muted/20" />}>
             <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen">
-              <Dithering
-                colorBack="#00000000" // Transparent
-                colorFront="#1c8eff" // Accent
-                shape="warp"
-                type="4x4"
-                speed={isHovered ? 0.6 : 0.2}
-                className="size-full bg-black"
-                minPixelRatio={1}
-              />
+              {isInView && (
+                <Dithering
+                  colorBack="#00000000" // Transparent
+                  colorFront="#1c8eff" // Accent
+                  shape="warp"
+                  type="4x4"
+                  speed={isHovered ? 0.6 : 0.2}
+                  className="size-full bg-black"
+                  minPixelRatio={1}
+                />
+              )}
             </div>
           </Suspense>
 
