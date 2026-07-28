@@ -196,14 +196,14 @@ export function VerticalTabs() {
                 className="w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-sky-600/40 flex items-center justify-center text-neutral-300 hover:border-sky-600/70 transition-all active:scale-90 cursor-pointer"
                 aria-label="Previous"
               >
-                <ChevronSvg className="rotate-180 text-2xl" />
+                <ChevronSvg className="rotate-180 text-2xl mr-0.5" />
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); handleNext(); setIsPaused(false); }}
                 className="w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-sky-600/40 flex items-center justify-center text-neutral-300 hover:border-sky-600/70 transition-all active:scale-90 cursor-pointer"
                 aria-label="Next"
               >
-                <ChevronSvg className="text-2xl" />
+                <ChevronSvg className="text-2xl ml-0.5" />
               </button>
             </div>
 
@@ -346,14 +346,14 @@ export function VerticalTabs() {
                     className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-sky-600/40 flex items-center justify-center text-neutral-300 hover:border-sky-600/70 transition-all active:scale-90 cursor-pointer"
                     aria-label="Previous"
                   >
-                    <ChevronSvg className="rotate-180 text-2xl" />
+                    <ChevronSvg className="rotate-180 text-2xl mr-0.5" />
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); handleNext(); }}
                     className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-md border border-sky-600/40 flex items-center justify-center text-neutral-300 hover:border-sky-600/70 transition-all active:scale-90 cursor-pointer"
                     aria-label="Next"
                   >
-                    <ChevronSvg className="text-2xl" />
+                    <ChevronSvg className="text-2xl ml-0.5" />
                   </button>
                 </div>
               </div>

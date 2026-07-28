@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { useState, Suspense, lazy, useEffect, useRef } from "react";
 import { MenuBar } from "./ui/bottom-menu";
 import InstagramSvg from "./svg/InstagramSvg";
@@ -29,12 +28,12 @@ const menuItems = [
   {
     icon: () => <WhatsappSvg className="text-xl" />,
     label: "Whatsapp",
-    href: "https://wa.me/5492364514241",
+    href: "https://wa.me/542364329720",
   },
   {
     icon: () => <CallSvg className="text-xl" />,
     label: "Llamar",
-    href: "tel:+5492364514241",
+    href: "tel:+542364329720",
   },
 ];
 
@@ -145,20 +144,23 @@ export function CTASection() {
   return (
     <section ref={containerRef} className="py-4 sm:py-12 w-full mb-6 md:mb-10 flex justify-center items-center px-4 md:px-6">
       {/* ========= */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
-        <div className="w-full h-screen" id="logo-mask"></div>
-        <img
-          src="/naztro.svg"
-          alt="Logo"
-          id="logo-img"
-          className="absolute opacity-0 w-62 h-62 m-auto inset-0 object-contain origin-center"
-        />
-        <img
-          src="/star-light.webp"
-          alt="Logo"
-          id="star-light-img"
-          className="absolute opacity-0 w-40 h-40 rotate-105 m-auto right-0 left-26 top-86 object-contain origin-center"
-        />
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-50 flex items-center justify-center">
+        <div className="absolute inset-0 w-full h-screen" id="logo-mask"></div>
+        
+        <div className="relative flex items-center justify-center w-56 h-56 sm:w-64 sm:h-64">
+          <img
+            src="/naztro.svg"
+            alt="Logo"
+            id="logo-img"
+            className="absolute opacity-0 w-full h-full object-contain origin-center"
+          />
+          <img
+            src="/star-light.webp"
+            alt="Star"
+            id="star-light-img"
+            className="absolute opacity-0 w-28 h-28 sm:w-40 sm:h-40 rotate-105 object-contain origin-center bottom-20 right-0.5 sm:bottom-20 sm:-right-3"
+          />
+        </div>
       </div>
       {/* ========= */}
       <div
@@ -195,13 +197,13 @@ export function CTASection() {
             </div>
 
             {/* Headline */}
-            <h2 className="font-serif flex flex-col gap-y-2 text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-medium tracking-tight text-foreground mb-8 md:mb-10 leading-[1.05]">
+            <h1 className="font-serif flex flex-col gap-y-2 text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-medium tracking-tight text-foreground mb-8 md:mb-10 leading-[1.05]">
               <span className="main-font">NAZTRO </span>
               <span className="text-3xl md:text-4xl">
                 digitalizamos tu{" "}
                 <span className="hero-font text-3xl md:text-4xl">negocio.</span>
               </span>
-            </h2>
+            </h1>
 
             {/* Description */}
             <p className="text-white text-base md:text-lg lg:text-xl max-w-2xl mb-8 md:mb-10 leading-relaxed">

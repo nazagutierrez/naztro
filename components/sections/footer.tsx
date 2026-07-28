@@ -7,19 +7,19 @@ import MailSvg from "../svg/MailSvg";
 
 const navigation = {
   work: [
-    { name: "Proyectos", href: "#" },
-    { name: "Servicios", href: "#" },
-    { name: "Testimonios", href: "#" },
+    { name: "Proyectos", href: "#trabajos" },
+    { name: "Servicios", href: "#servicios" },
+    { name: "Testimonios", href: "#testimonios" },
   ],
   company: [
-    { name: "Nosotros", href: "#" },
-    { name: "El Equipo", href: "#" },
-    { name: "Contacto", href: "#" },
+    { name: "Nosotros", href: "#nosotros" },
+    { name: "Proceso", href: "#proceso" },
+    { name: "Contacto", href: "#contacto" },
   ],
   social: [
-    { name: "Instagram", href: "#" },
-    { name: "LinkedIn", href: "#" },
-    { name: "GitHub", href: "#" },
+    { name: "Instagram", href: "https://www.instagram.com/naztrosoftware/" },
+    { name: "Mail", href: "mailto:naztrosoftwarejunin@gmail.com" },
+    { name: "WhatsApp", href: "https://wa.me/542364329720" },
   ],
 };
 
@@ -127,6 +127,8 @@ export function Footer() {
                 <li key={item.name}>
                   <a
                     href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-white/70 hover:text-sky-400 text-sm font-medium transition-colors"
                   >
                     {item.name}
