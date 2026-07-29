@@ -91,11 +91,11 @@ export function VerticalTabs() {
   };
 
   return (
-    <section ref={containerRef} className="w-full bg-transparent sm:min-h-screen h-auto flex items-center pb-20 sm:pb-16 pt-16 lg:pb-0 lg:pt-0 [overflow-anchor:none]">
+    <section ref={containerRef} className="w-full bg-transparent sm:min-h-screen h-auto flex items-center pb-20 sm:pb-16 pt-10 sm:pt-16 lg:pb-0 lg:pt-0 [overflow-anchor:none]">
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto">
 
         {/* Titulo: solo visible en mobile (lg lo muestra dentro del grid) */}
-        <div className="flex flex-col items-center lg:hidden text-center space-y-3 mb-8">
+        <div className="flex flex-col items-center lg:hidden text-center space-y-3 mb-10">
           <h2 className="main-font text-balance text-4xl font-medium text-neutral-300">
             NUESTROS TRABAJOS
           </h2>

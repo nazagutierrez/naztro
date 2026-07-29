@@ -40,7 +40,7 @@ export function AboutSection() {
               
               {/* Background Image */}
               <div className="absolute inset-0 z-0 mix-blend-screen pointer-events-none duration-700 opacity-60">
-                <img src="/naza-marce.png" className="h-full w-full object-cover" alt="Team" loading="lazy" decoding="async" />
+                <img src="/naza-marce.webp" className="h-full w-full object-cover" alt="Team" loading="lazy" decoding="async" />
               </div>
 
               {/* Tooltips de personas — ocultos en mobile, sin hover táctil */}

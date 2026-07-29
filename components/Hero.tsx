@@ -43,6 +43,8 @@ export function CTASection() {
   const isInView = useInView(containerRef, { margin: "100px" });
 
   useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
     const tl = gsap.timeline({
       ease: "power2.out",
     });
@@ -79,7 +81,7 @@ export function CTASection() {
       "#logo-img",
       {
         delay: 0.1,
-        duration: 1,
+        duration: isMobile ? 3 : 2,
         scale: 30,
         opacity: 0,
         display: "none",
@@ -88,13 +90,13 @@ export function CTASection() {
     );
 
     tl.fromTo(
-      "#logo-mask",
+      "#iris-circle",
       {
-        "--size": "0px",
+        attr: { r: 0 },
       },
       {
-        "--size": "15000px", // ajustá según pantalla
-        duration: 1,
+        attr: { r: 1400 },
+        duration: isMobile ? 5 : 2,
         ease: "power3.out",
       },
       "<",
@@ -104,48 +106,32 @@ export function CTASection() {
       "#logo-mask",
       {
         opacity: 0,
-        duration: 2,
+        duration: 0.5,
         ease: "power1.inOut",
       },
-      "-=1",
-    );
-
-    // tl.fromTo(
-    //   "#ttl-bg",
-    //   {
-    //     opacity: 0,
-    //     scale: 0.8,
-    //   },
-    //   {
-    //     opacity: 1,
-    //     scale: 1,
-    //     duration: 0.5,
-    //     ease: "back.inOut",
-    //   },
-    //   "<0.2",
-    // );
-
-    tl.fromTo(
-      ["#ttl-bg"],
-      {
-        opacity: 0,
-        scale: 1,
-      },
-      {
-        duration: 1,
-        scale: 1,
-        opacity: 1,
-        ease: "power2.out",
-      },
-      "<0.3",
+      "-=0.2",
     );
   }, []);
+
 
   return (
     <section ref={containerRef} className="py-4 sm:py-12 w-full mb-6 md:mb-10 flex justify-center items-center px-4 md:px-6">
       {/* ========= */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-50 flex items-center justify-center">
-        <div className="absolute inset-0 w-full h-screen" id="logo-mask"></div>
+        {/* SVG iris overlay — cross-browser, compatible con Safari */}
+        <svg
+          id="logo-mask"
+          className="absolute inset-0 w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <mask id="iris-mask">
+              <rect width="100%" height="100%" fill="white" />
+              <circle id="iris-circle" cx="50%" cy="50%" r="0" fill="black" />
+            </mask>
+          </defs>
+          <rect width="100%" height="100%" fill="black" mask="url(#iris-mask)" />
+        </svg>
         
         <div className="relative flex items-center justify-center w-56 h-56 sm:w-64 sm:h-64">
           <img
@@ -169,7 +155,10 @@ export function CTASection() {
         onMouseLeave={() => setIsHovered(false)}
         id="ttl-bg"
       >
-        <div className="relative overflow-hidden rounded-[28px] border border-sky-700 shadow-sm min-h-[95dvh] sm:min-h-[600px] md:min-h-[750px] flex flex-col items-center justify-center duration-500 z-40">
+        <div 
+          className="relative overflow-hidden rounded-[28px] border border-sky-700 shadow-sm min-h-[80vh] sm:min-h-[600px] md:min-h-[750px] flex flex-col items-center justify-center duration-500 z-40"
+          style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
+        >
           <Suspense fallback={<div className="absolute inset-0 bg-muted/20" />}>
             <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen">
               {isInView && (

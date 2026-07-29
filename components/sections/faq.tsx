@@ -35,7 +35,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full h-[1000px] sm:h-[1100px] lg:h-[850px] xl:h-screen py-16 md:py-32 lg:pb-0 bg-background relative overflow-hidden flex flex-col items-center">
+    <section className="w-full h-auto py-16 md:py-32 lg:pb-0 bg-background relative flex flex-col items-center [overflow-anchor:none]">
       
       {/* Background Glow */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />

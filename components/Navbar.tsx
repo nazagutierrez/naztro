@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Twitter, Instagram, Linkedin, Mail } from 'lucide-react';
+import WhatsappSvg from './svg/WhatsappSvg';
+import InstagramSvg from './svg/InstagramSvg';
+import MailSvg from './svg/MailSvg';
 
 const NAV_LINKS = [
   { label: 'Trabajos', href: '#trabajos' },
@@ -13,9 +16,9 @@ const NAV_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: 'Twitter', href: '#', icon: Twitter },
-  { label: 'Instagram', href: '#', icon: Instagram },
-  { label: 'LinkedIn', href: '#', icon: Linkedin },
+  { label: 'Whatsapp', href: 'https://wa.me/542364329720', icon: WhatsappSvg },
+  { label: 'Instagram', href: 'https://www.instagram.com/naztrosoftware', icon: InstagramSvg },
+  { label: 'Mail', href: 'mailto:naztrosoftwarejunin@gmail.com', icon: MailSvg },
 ];
 
 export function Navbar() {
@@ -23,13 +26,23 @@ export function Navbar() {
   const [contentVisible, setContentVisible] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isDesktop, setIsDesktop] = useState(true);
+  const [isMobileSmall, setIsMobileSmall] = useState(false);
 
   useEffect(() => {
-    const mql = window.matchMedia('(min-width: 768px)');
-    setIsDesktop(mql.matches);
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mql.addEventListener('change', handler);
-    return () => mql.removeEventListener('change', handler);
+    const mqlDesktop = window.matchMedia('(min-width: 768px)');
+    setIsDesktop(mqlDesktop.matches);
+    const handlerDesktop = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mqlDesktop.addEventListener('change', handlerDesktop);
+
+    const mqlMobile = window.matchMedia('(max-width: 639px)');
+    setIsMobileSmall(mqlMobile.matches);
+    const handlerMobile = (e: MediaQueryListEvent) => setIsMobileSmall(e.matches);
+    mqlMobile.addEventListener('change', handlerMobile);
+
+    return () => {
+      mqlDesktop.removeEventListener('change', handlerDesktop);
+      mqlMobile.removeEventListener('change', handlerMobile);
+    };
   }, []);
 
   // Secuencia: width primero, luego height, luego content
@@ -47,7 +60,7 @@ export function Navbar() {
   const panelStyle: React.CSSProperties = isOpen
     ? {
         width: 'min(500px, calc(100vw - 3rem))', // responsive: respeta márgenes en móvil
-        height: `min(${isDesktop ? '800px' : '600px'}, calc(100vh - 10rem))`, // 500px en desktop, 400px en móvil
+        height: `min(${isDesktop ? '800px' : isMobileSmall ? '500px' : '600px'}, calc(100vh - 10rem))`,
         maxHeight: '90vh',
         transition: [
           'width 420ms cubic-bezier(0.16, 1, 0.3, 1) 0ms',
@@ -74,7 +87,7 @@ export function Navbar() {
       {/* Botón flotante en la esquina superior derecha */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-6 right-6 md:top-10 md:right-10 z-50 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white backdrop-blur-md hover:bg-white/10 hover:border-sky-600/50 transition-all duration-300 shadow-lg cursor-pointer"
+        className="fixed top-4 sm:top-6 right-6 md:right-10 z-50 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white backdrop-blur-md hover:bg-white/10 hover:border-sky-600/50 transition-all duration-300 shadow-lg cursor-pointer"
         aria-label="Toggle menu"
       >
         <div className="relative w-6 h-6 flex items-center justify-center">
@@ -89,7 +102,7 @@ export function Navbar() {
         Las propiedades estáticas de estilo visual están en className (Tailwind).
       */}
       <div
-        className="fixed top-28 right-6 z-49 rounded-3xl overflow-hidden bg-[#0a0f1a]/65 backdrop-blur-xl border border-white/8 shadow-[0_32px_80px_-10px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.04)]"
+        className="fixed top-20 sm:top-24 right-6 z-49 rounded-3xl overflow-hidden bg-[#0a0f1a]/65 backdrop-blur-xl border border-white/8 shadow-[0_32px_80px_-10px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.04)]"
         style={panelStyle}
       >
         {/* Glows internos — radial-gradient no soportado en Tailwind, permanecen inline */}
@@ -108,7 +121,7 @@ export function Navbar() {
           El resto se mueve a Tailwind.
         */}
         <div
-          className="relative z-10 h-full flex flex-col justify-between p-6 md:p-10 overflow-y-auto"
+          className="relative z-10 h-full flex flex-col justify-between p-6 md:p-10 overflow-y-auto nav-scrollbar"
           style={{
             opacity: contentVisible ? 1 : 0,
             transform: contentVisible ? 'translateY(0)' : 'translateY(12px)',
@@ -143,9 +156,8 @@ export function Navbar() {
 
                   {/* Texto — color/transform solo en desktop */}
                   <span
-                    className="main-font uppercase tracking-tight block"
+                    className="main-font uppercase tracking-tight block text-3xl sm:text-4xl lg:text-5xl"
                     style={{
-                      fontSize: 'clamp(1.8rem, 8vw, 3rem)',
                       lineHeight: 1.05,
                       transition: 'color 300ms ease-in-out, transform 300ms ease-in-out',
                       color: activeHover ? 'rgb(125, 211, 252)' : 'white',
@@ -175,22 +187,12 @@ export function Navbar() {
                     key={label}
                     href={href}
                     aria-label={label}
-                    className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-sky-500/60 transition-all duration-300"
+                    className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-sky-500/60 transition-all duration-300"
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-5 h-5" />
                   </a>
                 ))}
               </div>
-
-              {/* Botón contacto */}
-              <a
-                href="#contacto"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-sky-500/60 hover:border-sky-500 text-white text-sm font-medium transition-all duration-300 shadow-[0_0_20px_rgba(14,165,233,0.3)]"
-              >
-                <Mail className="w-4 h-4" />
-                Contactar
-              </a>
             </div>
           </div>
         </div>

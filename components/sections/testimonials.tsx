@@ -46,7 +46,7 @@ export function Testimonials() {
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
         }}
       >
-        <Marquee speed={40}>
+        <Marquee speed={90}>
           {testimonials.map((testimonial, index) => (
             <div
               key={index}

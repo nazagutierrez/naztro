@@ -67,13 +67,26 @@ export function Footer() {
             </p>
             {/* Redes sociales - Mobile solo */}
             <div className="flex sm:hidden items-center gap-4 mt-2">
-              <a href="#" className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/10 transition-all">
+              <a 
+                href="https://www.instagram.com/naztrosoftware"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/10 transition-all">
                 <InstagramSvg className="w-5 h-5" />
               </a>
-              <a href="#" className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/10 transition-all">
+              <a 
+                href="https://wa.me/542364329720"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/10 transition-all"
+              >
                 <WhatsappSvg className="w-5 h-5" />
               </a>
-              <a href="#" className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/10 transition-all">
+              <a 
+                target="_blank"
+                rel="noopener noreferrer"
+                href="mailto:naztrosoftwarejunin@gmail.com"
+                className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/10 transition-all">
                 <MailSvg className="w-5 h-5" />
               </a>
             </div>
