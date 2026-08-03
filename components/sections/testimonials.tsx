@@ -37,6 +37,9 @@ export function Testimonials() {
           <span className="main-font">LO QUE </span>
           <span className="hero-font text-sky-500">DICEN.</span>
         </h2>
+        <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto leading-relaxed mt-4">
+          Resultados reales de clientes reales. Sin filtros, sin guión, solo la experiencia de trabajar con nosotros.
+        </p>
       </div>
 
       <div 

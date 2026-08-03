@@ -9,24 +9,24 @@ const SERVICES = [
   {
     id: "01",
     title: "Piso Fuerte",
-    href: "www.pisofuerte.com.ar",
+    href: "https://www.pisofuerte.com.ar",
     description:
-      "Creating beautiful, functional, and user-centric digital experiences.",
+      "Desarrollo de marca, landing page y estrategia en google para una constructora. Resultado: mas ventas y mejor presencía en internet",
     image: "/piso-blue.webp",
   },
   {
     id: "02",
     title: "Nordicaps",
-    href: "nordicaps.vercel.app",
-    description: "Building high-performance, animated websites with Framer.",
+    href: "https://nordicaps.vercel.app",
+    description: "Desarrollo de sitio web e-commerce para venta minorista de gorras. Diseño innovador y único.",
     image: "/nordicaps-blue.webp",
   },
   {
     id: "03",
     title: "Dymo",
-    href: "dymo.tpeoficial.com",
+    href: "https://dymo.tpeoficial.com",
     description:
-      "Defining your brand visual identity and voice for a lasting impression.",
+      "Desarrollo web para venta de software e IA, diseño moderno y fluido con muchas funcionalidades",
     image: "/dymo-blue.webp",
   },
 ];
@@ -99,7 +99,7 @@ export function VerticalTabs() {
           <h2 className="main-font text-balance text-4xl font-medium text-neutral-300">
             NUESTROS TRABAJOS
           </h2>
-          <span className="text-neutral-300 block ml-0.5 max-w-140">
+          <span className="text-white/80 block ml-0.5 max-w-140">
             Resumen de nuestros proyectos mas importantes, donde hemos mejorado ampliamente la marca digital del negocio
           </span>
         </div>
@@ -162,10 +162,10 @@ export function VerticalTabs() {
                   href={SERVICES[activeIndex].href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-neutral-400 opacity-70 hover:opacity-100 hover:underline underline-offset-2 decoration-1 mt-1 block"
+                  className="text-sm text-neutral-400 underline underline-offset-4 decoration-neutral-600 decoration-1 mt-1 block"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {SERVICES[activeIndex].href}
+                  {SERVICES[activeIndex].href.replace(/^https?:\/\//, "")}
                 </a>
                 <p className="text-sm text-neutral-300/80 leading-relaxed mt-3 max-w-xs">
                   {SERVICES[activeIndex].description}
@@ -232,7 +232,7 @@ export function VerticalTabs() {
               <h2 className="main-font text-balance text-5xl font-medium lg:text-5xl text-neutral-300">
                 NUESTROS TRABAJOS
               </h2>
-              <span className="text-neutral-300 block ml-0.5 pr-10">
+              <span className="text-white/80 block ml-0.5 pr-10">
                 Resumen de nuestros proyectos mas importantes, donde hemos mejorado ampliamente la marca digital del negocio
               </span>
             </div>
@@ -280,7 +280,7 @@ export function VerticalTabs() {
                           rel="noopener noreferrer"
                           className="text-xl mt-1 tabular-nums opacity-50 hover:underline decoration-1 underline-offset-2"
                         >
-                          {service.href}
+                          {service.href.replace(/^https?:\/\//, "")}
                         </a>
                       </span>
 

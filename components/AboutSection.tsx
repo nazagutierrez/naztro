@@ -22,13 +22,13 @@ export function AboutSection() {
           
           {/* Top Left: Text */}
           <div className="xl:col-span-6 flex flex-col justify-center items-center xl:items-start order-1">
-            <div className="space-y-4 mb-4 xl:mb-14">
+            <div className="space-y-4 mb-4">
 
               <h2 className="font-serif items-center xl:items-start text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1] flex flex-col">
                 <span className="main-font">EL </span>
                 <span className="hero-font text-sky-500 pb-2">EQUIPO.</span>
               </h2>
-              <p className="text-white/70 text-lg md:text-xl max-w-xl text-center xl:text-left leading-relaxed mt-4">
+              <p className="text-white/80 text-lg md:text-xl max-w-xl text-center xl:text-left leading-relaxed mt-4">
                 Somos una dupla creativa obsesionada con llevar la digitalización al siguiente nivel. Transformamos problemas complejos en productos simples, estéticos y altamente funcionales.
               </p>
             </div>
@@ -43,7 +43,7 @@ export function AboutSection() {
                 <img src="/naza-marce.webp" className="h-full w-full object-cover" alt="Team" loading="lazy" decoding="async" />
               </div>
 
-              {/* Tooltips de personas — ocultos en mobile, sin hover táctil */}
+              {/* Tooltips de personas - ocultos en mobile, sin hover táctil */}
               {/* Para ajustar posiciones → editar .tooltip-naza / .tooltip-marce en globals.css */}
               <div className="hidden md:block absolute inset-0 z-20 tracking-wider pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500">
                 <div className="tooltip-naza translate-y-2 group-hover/card:translate-y-0 transition-transform duration-500">
@@ -88,7 +88,7 @@ export function AboutSection() {
                     {member.role}
                   </span>
                 </div>
-                <p className="text-white/60 text-sm md:text-base leading-relaxed relative z-10 text-pretty">
+                <p className="text-white/80 text-sm md:text-base leading-relaxed relative z-10 text-pretty">
                   {member.description}
                 </p>
               </div>

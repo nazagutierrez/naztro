@@ -91,7 +91,7 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0], index: n
           {service.title}
         </h3>
         
-        <p className={`text-sm md:text-base leading-relaxed transition-colors duration-300 flex-1 ${isActive ? 'text-white/70 md:text-white/50' : 'text-white/50'} md:group-hover:text-white/70`}>
+        <p className={`text-sm md:text-base leading-relaxed transition-colors duration-300 flex-1 ${isActive ? 'text-white/70 md:text-white/70' : 'text-white/50'} md:group-hover:text-white/70`}>
           {service.description}
         </p>
 
@@ -125,15 +125,14 @@ export function ServicesSection() {
       <div className="absolute top-1/4 left-0 w-[600px] h-[600px] rounded-full pointer-events-none -translate-x-1/2" style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }} />
       <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] rounded-full pointer-events-none translate-x-1/3" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)' }} />
 
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 lg:px-12 relative z-10">
+      <div className="w-full px-4 md:px-8 lg:px-12 relative z-10">
         
         {/* Top Header Row: Title & AsciiLogo Showcase */}
         <div className="flex  flex-col lg:flex-row items-stretch gap-6 md:gap-8 mb-6 md:mb-8">
-          
           {/* Title Area */}
           <div 
             ref={titleRef}
-            className="lg:w-7/12 md:p-12 lg:p-16 flex flex-col justify-center relative group"
+            className="w-full md:p-12 lg:p-16 flex flex-col justify-center relative group"
             style={{
               opacity: titleVisible ? 1 : 0,
               transform: titleVisible ? "translateY(0)" : "translateY(20px)",
@@ -152,9 +151,9 @@ export function ServicesSection() {
                 <span className="hero-font pb-2">hacemos.</span>
               </h2>
               
-              <p className="text-white/50 text-base md:text-lg max-w-xl leading-relaxed">
+              <p className="text-white/80 text-base md:text-lg max-w-xl leading-relaxed">
                 Transformamos ideas complejas en productos digitales de alto rendimiento. 
-                Diseño obsesivo, código impecable y un enfoque total en tus resultados.
+                Diseño único, código impecable y un enfoque total en tus resultados.
               </p>
             </div>
           </div>
@@ -179,7 +178,7 @@ export function ServicesSection() {
         </div>
 
         {/* Bottom Row: 2x2 Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid max-w-[1400px] mx-auto grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {SERVICES.map((service, index) => (
             <ServiceCard key={service.id} service={service} index={index} />
           ))}

@@ -58,7 +58,7 @@ export function FAQ() {
               <span className="hero-font text-sky-500">FRECUENTES.</span>
             </h2>
             
-            <p className="text-white/60 text-lg max-w-md">
+            <p className="text-white/80 text-lg max-w-md">
               Todo lo que necesitas saber sobre nuestro proceso, tecnologías y cómo podemos ayudarte a escalar tu producto digital.
             </p>
           </div>
@@ -114,7 +114,7 @@ export function FAQ() {
                       >
                         <div className="px-6 md:px-8 pb-8 pt-2">
                           <div className="w-62 absolute -top-2.5 h-px bg-gradient-to-r from-sky-500 to-transparent mb-4 rounded-full opacity-50" />
-                          <p className="text-base text-white/70 leading-relaxed font-light">
+                          <p className="text-base text-white/80 leading-relaxed font-light">
                             {faq.answer}
                           </p>
                         </div>

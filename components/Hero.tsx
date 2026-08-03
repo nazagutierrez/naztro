@@ -118,7 +118,7 @@ export function CTASection() {
     <section ref={containerRef} className="py-4 sm:py-12 w-full mb-6 md:mb-10 flex justify-center items-center px-4 md:px-6">
       {/* ========= */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-50 flex items-center justify-center">
-        {/* SVG iris overlay — cross-browser, compatible con Safari */}
+        {/* SVG iris overlay - cross-browser, compatible con Safari */}
         <svg
           id="logo-mask"
           className="absolute inset-0 w-full h-full"

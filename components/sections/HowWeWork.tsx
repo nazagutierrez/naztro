@@ -6,7 +6,7 @@ const STEPS = [
     number: "01",
     title: "Nos ponemos en contacto",
     description:
-      "Todo empieza con una charla. Nos contás de tu negocio, tu idea o el problema que querés resolver. Sin formularios eternos, sin presupuestos ciegos — solo una conversación directa.",
+      "Todo empieza con una charla. Nos contás de tu negocio, tu idea o el problema que querés resolver. Sin formularios eternos, sin presupuestos ciegos - solo una conversación directa.",
     detail: "WhatsApp · Mail · Llamada",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
@@ -30,7 +30,7 @@ const STEPS = [
     number: "03",
     title: "Diseño y arquitectura",
     description:
-      "Diseñamos el sistema visual y la estructura técnica antes de escribir una sola línea de código. Componentes, flujos, paleta, tipografía — todo definido y aprobado por vos.",
+      "Diseñamos el sistema visual y la estructura técnica antes de escribir una sola línea de código. Componentes, flujos, paleta, tipografía - todo definido y aprobado por vos.",
     detail: "UI/UX · Componentes · Tech stack",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
@@ -200,7 +200,7 @@ function SnakeLine({ gridRef }: { gridRef: React.RefObject<HTMLDivElement | null
   }, [gridRef]);
 
 
-  // Dashoffset basado en el scroll — fuertemente atado al scroll de la grilla
+  // Dashoffset basado en el scroll - fuertemente atado al scroll de la grilla
   useEffect(() => {
     const path = pathRef.current;
     const glow = glowRef.current;
@@ -323,7 +323,7 @@ function StepCard({
       {/* Icon & Connectors Area */}
       <div className="relative flex-shrink-0 w-14 h-14 lg:w-full flex justify-center items-center">
 
-        {/* Circle Icon — data-snake-anchor lets SnakeLine measure its center */}
+        {/* Circle Icon - data-snake-anchor lets SnakeLine measure its center */}
         <div
           data-snake-anchor="true"
           className="relative w-14 h-14 rounded-full border border-sky-500/30 bg-[#0a0f1a]/80 backdrop-blur-sm
@@ -344,10 +344,10 @@ function StepCard({
         <h3 className="text-xl md:text-2xl font-medium text-white mb-3 group-hover:text-sky-300 transition-colors">
           {step.title}
         </h3>
-        <p className="text-white/50 text-sm md:text-base leading-relaxed mb-4 flex-1">
+        <p className="text-white/80 text-sm md:text-base leading-relaxed mb-4 flex-1">
           {step.description}
         </p>
-        <span className="inline-block text-[10px] md:text-xs uppercase tracking-widest text-sky-300/50">
+        <span className="inline-block text-[10px] md:text-xs uppercase tracking-widest text-sky-300/60">
           {step.detail}
         </span>
       </div>
@@ -399,7 +399,7 @@ export function HowWeWork() {
             <span className="hero-font pb-3">trabajamos.</span>
           </h2>
 
-          <p className="text-white/50 text-lg md:text-xl max-w-2xl mt-6 leading-relaxed">
+          <p className="text-white/80 text-lg md:text-xl max-w-2xl mt-6 leading-relaxed">
             Metodología clara, transparente y ágil. Sin vueltas ni sorpresas.
             Así es como llevamos tu idea desde el primer mail hasta el lanzamiento.
           </p>

@@ -105,7 +105,7 @@ export function Navbar() {
         className="fixed top-20 sm:top-24 right-6 z-49 rounded-3xl overflow-hidden bg-[#0a0f1a]/65 backdrop-blur-xl border border-white/8 shadow-[0_32px_80px_-10px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.04)]"
         style={panelStyle}
       >
-        {/* Glows internos — radial-gradient no soportado en Tailwind, permanecen inline */}
+        {/* Glows internos - radial-gradient no soportado en Tailwind, permanecen inline */}
         <div
           className="absolute top-0 right-0 w-75 h-75 pointer-events-none"
           style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)' }}
@@ -142,7 +142,7 @@ export function Navbar() {
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="relative flex items-center py-1"
                 >
-                  {/* Logo que desliza — solo en desktop */}
+                  {/* Logo que desliza - solo en desktop */}
                   <div
                     className="absolute left-0 pointer-events-none hidden md:block"
                     style={{
@@ -154,7 +154,7 @@ export function Navbar() {
                     <img src="/naztro.svg" alt="" className="w-12 h-12 object-contain" />
                   </div>
 
-                  {/* Texto — color/transform solo en desktop */}
+                  {/* Texto - color/transform solo en desktop */}
                   <span
                     className="main-font uppercase tracking-tight block text-3xl sm:text-4xl lg:text-5xl"
                     style={{

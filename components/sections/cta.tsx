@@ -43,17 +43,17 @@ export function CTA() {
           Listos para empezar
         </div>
 
-        <h2 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.1] flex flex-col items-center mb-6">
+        <h2 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white leading-[1.1] flex flex-col items-center mb-10">
           <span className="main-font">EMPECEMOS </span>
           <span className="hero-font text-sky-500">TU PROYECTO.</span>
         </h2>
         
-        <p className="text-white/60 text-lg md:text-xl sm:px-10 max-w-2xl mx-auto mb-12">
+        <p className="text-white/80 text-lg md:text-xl sm:px-10 max-w-2xl mx-auto mb-12">
           Escríbenos a nuestro correo y nos pondremos en contacto contigo en menos de 24 horas para hablar sobre cómo podemos digitalizar tu idea.
         </p>
 
         <div className="flex flex-col items-center gap-12">
-          <div className="relative group flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6">
+          <div className="relative group flex flex-col items-center justify-center gap-3">
             <a
               href="mailto:naztrosoftwarejunin@gmail.com"
               target="_blank"
@@ -64,7 +64,7 @@ export function CTA() {
             </a>
             <button
               onClick={handleCopy}
-              className={`px-4 py-2 md:p-2.5 rounded-full bg-white/5 hover:bg-sky-500/20 border border-white/10 hover:border-sky-500/30 transition-all duration-300 flex items-center justify-center gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:-translate-x-4 md:group-hover:translate-x-0 cursor-pointer mt-1 md:mt-0 ${copied ? 'text-sky-500' : 'text-white/70 hover:text-sky-400'}`}
+              className={`md:absolute md:left-full md:top-1/2 md:-translate-y-1/2 md:ml-3 px-4 py-2 md:p-2.5 rounded-full bg-white/5 hover:bg-sky-500/20 border border-white/10 hover:border-sky-500/30 transition-all duration-300 flex items-center justify-center gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:-translate-x-2 md:group-hover:translate-x-0 cursor-pointer ${copied ? 'text-sky-500' : 'text-white/70 hover:text-sky-400'}`}
               title="Copiar correo"
             >
               <span className="md:hidden text-sm font-medium tracking-wide">{copied ? "Copiado" : "Copiar"}</span>

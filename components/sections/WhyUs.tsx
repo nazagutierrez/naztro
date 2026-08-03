@@ -14,7 +14,7 @@ const DIFFERENTIATORS = [
     title: "Pixel-perfect",
     subtitle: "Diseño sin concesiones",
     description:
-      "Obsesionados con los detalles. Desde el kerning tipográfico hasta las micro-animaciones, cada elemento está refinado hasta que se siente exactamente bien — no 'suficientemente bien'.",
+      "Obsesionados con los detalles. Desde las tipografías  hasta las micro-animaciones, cada elemento está refinado hasta que se siente exactamente bien - no 'suficientemente bien'.",
     tag: "Design craft",
   },
   {
@@ -126,7 +126,7 @@ function DifferentiatorRow({
             {item.subtitle}
           </p>
 
-          {/* Description — always open on mobile, expands on hover on desktop */}
+          {/* Description - always open on mobile, expands on hover on desktop */}
           <div
             className="grid transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] grid-rows-[1fr] opacity-100 md:grid-rows-[0fr] md:opacity-0 md:group-hover:grid-rows-[1fr] md:group-hover:opacity-100"
           >
@@ -171,7 +171,7 @@ export function WhyUs() {
 
       <div className="w-full px-4 md:px-8 lg:px-12 xl:px-20 mx-auto relative z-10">
 
-        {/* Header — left-aligned, editorial */}
+        {/* Header - left-aligned, editorial */}
         <div
           ref={titleRef}
           className="mb-13 md:mb-16"
@@ -197,7 +197,7 @@ export function WhyUs() {
           </div>
         </div>
 
-        {/* Differentiators — editorial list. */}
+        {/* Differentiators - editorial list. */}
         <div className="relative lg:h-screen">
           {DIFFERENTIATORS.map((item, i) => (
             <DifferentiatorRow key={item.number} item={item} index={i} />
