@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import nazaMarceImg from "@/src/assets/naza-marce.webp";
+import nazaMarceImg from "../src/assets/naza-marce.webp";
 
 // Puedes editar los nombres e info aquí:
 const TEAM = [

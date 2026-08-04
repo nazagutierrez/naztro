@@ -7,7 +7,7 @@ import CallSvg from "./svg/CallSvg";
 import { gsap } from "gsap";
 import { useInView } from "framer-motion";
 import HeroButton from "./ui/HeroButton";
-import starLightImg from "@/src/assets/star-light.webp";
+import starLightImg from "../src/assets/star-light.webp";
 
 const Dithering = lazy(() =>
   import("@paper-design/shaders-react").then((mod) => ({

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import WhatsappSvg from "../svg/WhatsappSvg";
 import InstagramSvg from "../svg/InstagramSvg";
-import starLightImg from "@/src/assets/star-light.webp";
+import starLightImg from "../../src/assets/star-light.webp";
 import MailSvg from "../svg/MailSvg";
 
 const navigation = {

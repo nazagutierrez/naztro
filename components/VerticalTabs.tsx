@@ -3,9 +3,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useInView } from "motion/react";
 import ChevronSvg from "./svg/ChevronSvg";
-import pisoBlueImg from "@/src/assets/piso-blue.webp";
-import nordicapsBlueImg from "@/src/assets/nordicaps-blue.webp";
-import dymoBlueImg from "@/src/assets/dymo-blue.webp";
+import pisoBlueImg from "../src/assets/piso-blue.webp";
+import nordicapsBlueImg from "../src/assets/nordicaps-blue.webp";
+import dymoBlueImg from "../src/assets/dymo-blue.webp";
 // Change Here
 const SERVICES = [
   {
