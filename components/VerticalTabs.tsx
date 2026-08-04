@@ -3,7 +3,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useInView } from "motion/react";
 import ChevronSvg from "./svg/ChevronSvg";
-
+import pisoBlueImg from "@/src/assets/piso-blue.webp";
+import nordicapsBlueImg from "@/src/assets/nordicaps-blue.webp";
+import dymoBlueImg from "@/src/assets/dymo-blue.webp";
 // Change Here
 const SERVICES = [
   {
@@ -12,14 +14,14 @@ const SERVICES = [
     href: "https://www.pisofuerte.com.ar",
     description:
       "Desarrollo de marca, landing page y estrategia en google para una constructora. Resultado: mas ventas y mejor presencía en internet",
-    image: "/piso-blue.webp",
+    image: pisoBlueImg,
   },
   {
     id: "02",
     title: "Nordicaps",
     href: "https://nordicaps.vercel.app",
     description: "Desarrollo de sitio web e-commerce para venta minorista de gorras. Diseño innovador y único.",
-    image: "/nordicaps-blue.webp",
+    image: nordicapsBlueImg,
   },
   {
     id: "03",
@@ -27,7 +29,7 @@ const SERVICES = [
     href: "https://dymo.tpeoficial.com",
     description:
       "Desarrollo web para venta de software e IA, diseño moderno y fluido con muchas funcionalidades",
-    image: "/dymo-blue.webp",
+    image: dymoBlueImg,
   },
 ];
 

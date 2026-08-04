@@ -7,6 +7,7 @@ import CallSvg from "./svg/CallSvg";
 import { gsap } from "gsap";
 import { useInView } from "framer-motion";
 import HeroButton from "./ui/HeroButton";
+import starLightImg from "@/src/assets/star-light.webp";
 
 const Dithering = lazy(() =>
   import("@paper-design/shaders-react").then((mod) => ({
@@ -51,42 +52,42 @@ export function CTASection() {
 
     tl.to("#logo-img", {
       opacity: 1,
-      duration: 0.5,
+      duration: 0.3,
     });
 
     tl.to("#star-light-img", {
       opacity: 1,
       scale: 0.6,
-      duration: 0.4,
+      duration: 0.3,
     });
 
     tl.to("#star-light-img", {
       opacity: 0,
       ease: "circ",
       scale: 2,
-      duration: 1,
+      duration: 0.6,
     });
 
     tl.to(
       "#logo-img",
       {
         opacity: 1,
-        duration: 0.3,
+        duration: 0.2,
         scale: 0.8,
       },
-      "<0.7",
+      "<0.4",
     );
 
     tl.to(
       "#logo-img",
       {
         delay: 0.1,
-        duration: isMobile ? 3 : 2,
+        duration: 2,
         scale: 30,
         opacity: 0,
         display: "none",
       },
-      "<0.3",
+      "<0.2",
     );
 
     tl.fromTo(
@@ -96,7 +97,7 @@ export function CTASection() {
       },
       {
         attr: { r: 1400 },
-        duration: isMobile ? 5 : 2,
+        duration: isMobile ? 3 : 2,
         ease: "power3.out",
       },
       "<",
@@ -106,7 +107,8 @@ export function CTASection() {
       "#logo-mask",
       {
         opacity: 0,
-        duration: 0.5,
+        duration: 0.3,
+        display: "none",
         ease: "power1.inOut",
       },
       "-=0.2",
@@ -117,7 +119,7 @@ export function CTASection() {
   return (
     <section ref={containerRef} className="py-4 sm:py-12 w-full mb-6 md:mb-10 flex justify-center items-center px-4 md:px-6">
       {/* ========= */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-50 flex items-center justify-center">
+      <div aria-hidden="true" className="fixed inset-0 overflow-hidden pointer-events-none z-50 flex items-center justify-center">
         {/* SVG iris overlay - cross-browser, compatible con Safari */}
         <svg
           id="logo-mask"
@@ -141,7 +143,7 @@ export function CTASection() {
             className="absolute opacity-0 w-full h-full object-contain origin-center"
           />
           <img
-            src="/star-light.webp"
+            src={starLightImg}
             alt="Star"
             id="star-light-img"
             className="absolute opacity-0 w-28 h-28 sm:w-40 sm:h-40 rotate-105 object-contain origin-center bottom-20 right-0.5 sm:bottom-20 sm:-right-3"
@@ -159,8 +161,8 @@ export function CTASection() {
           className="relative overflow-hidden rounded-[28px] border border-sky-700 shadow-sm min-h-[80vh] sm:min-h-[600px] md:min-h-[750px] flex flex-col items-center justify-center duration-500 z-40"
           style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
         >
-          <Suspense fallback={<div className="absolute inset-0 bg-muted/20" />}>
-            <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen">
+          <Suspense fallback={<div className="absolute inset-0 z-0"><img src="/poster-naztro.webp" className="w-full h-full object-cover opacity-40 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen" alt="" /></div>}>
+            <div className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-50 mix-blend-multiply dark:mix-blend-screen" style={{ backgroundImage: "url('/poster-naztro.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
               {isInView && (
                 <Dithering
                   colorBack="#00000000" // Transparent

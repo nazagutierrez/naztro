@@ -1,5 +1,38 @@
 @import "tailwindcss";
 
+/* ─── Local Fonts ─────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "IBM Plex Serif";
+  src: url("/fonts/IBMPlexSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Serif";
+  src: url("/fonts/IBMPlexSerif-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Variable.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Special Gothic Expanded One";
+  src: url("/fonts/SpecialGothicExpandedOne-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-sans: "Space Grotesk", sans-serif;
   --font-serif: "IBM Plex Serif", serif;
@@ -69,9 +102,6 @@
   .tooltip-naza  { left: 20%; top: 16%; }
   .tooltip-marce { left: 80%; top: 16%; }
 }
-
-
-
 
 
 body {

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import WhatsappSvg from "../svg/WhatsappSvg";
 import InstagramSvg from "../svg/InstagramSvg";
+import starLightImg from "@/src/assets/star-light.webp";
 import MailSvg from "../svg/MailSvg";
 
 const navigation = {
@@ -50,7 +51,7 @@ export function Footer() {
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[85%] w-[200vw] md:w-[120vw] lg:w-[100vw] max-w-[2000px] aspect-square rounded-full border-t border-sky-400/50 bg-sky-400/5 shadow-[0_-20px_80px_rgba(56,189,248,0.1)] pointer-events-none z-0">
         <img 
-          src="/star-light.webp" 
+          src={starLightImg}
           alt="Star Flare" 
           className="absolute top-0 left-1/2 w-[300px] md:w-[500px] mix-blend-screen pointer-events-none star-pulse-animated"
           style={{ transform: "translate(-50%, -50%)" }}
