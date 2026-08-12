@@ -64,7 +64,7 @@ export function Footer() {
           <div className="col-span-3 sm:col-span-3 md:col-span-1 flex flex-col gap-4">
             <span className="main-font text-3xl text-white tracking-tight">NAZTRO</span>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs mt-2">
-              Transformamos problemas complejos en productos simples, estéticos y altamente funcionales.
+              Transformamos problemas complejos en productos simples, estéticos y altamente funcionales desde Junín, Buenos Aires para todo el mundo.
             </p>
             {/* Redes sociales - Mobile solo */}
             <div className="flex sm:hidden items-center gap-4 mt-2">
@@ -160,7 +160,7 @@ export function Footer() {
           </div>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mt-8 md:mt-12 w-full px-4">
             <p className="text-[10px] hidden md:block md:text-xs font-mono uppercase tracking-widest text-white/30">
-              Desarrollo Web & UI/UX
+              Desarrollo Web & UI/UX | Junín, Buenos Aires
             </p>
             <p className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-white/30 text-center md:text-right">
               © {new Date().getFullYear()} Naztro. Todos los derechos reservados.

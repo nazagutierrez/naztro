@@ -135,10 +135,10 @@ export function CTASection() {
           <rect width="100%" height="100%" fill="black" mask="url(#iris-mask)" />
         </svg>
         
-        <div className="relative flex items-center justify-center w-56 h-56 sm:w-64 sm:h-64">
+        <div aria-hidden="true" className="relative flex items-center justify-center w-56 h-56 sm:w-64 sm:h-64 pointer-events-none">
           <img
             src="/naztro.svg"
-            alt="Logo"
+            alt=""
             id="logo-img"
             className="absolute opacity-0 w-full h-full object-contain origin-center"
           />
@@ -197,10 +197,10 @@ export function CTASection() {
             </h1>
 
             {/* Description */}
-            <p className="text-white text-base md:text-lg lg:text-xl max-w-2xl mb-8 md:mb-10 leading-relaxed">
-              Desarrollamos soluciones web a medida para potenciar tu presencia
+            <h2 className="text-white text-base md:text-lg lg:text-xl max-w-2xl mb-8 md:mb-10 leading-relaxed font-normal">
+              Desarrollamos software y soluciones web a medida en Junín, Buenos Aires, para potenciar tu presencia
               digital, mejorando tiempos, organización y ventas.
-            </p>
+            </h2>
 
             <MenuBar className="mb-8 md:mb-10 text-start" items={menuItems} />
 
